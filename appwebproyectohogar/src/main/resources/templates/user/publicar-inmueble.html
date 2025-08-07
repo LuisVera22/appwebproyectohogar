@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layouts/user_layout :: fragHead}">
+        <th:block th:with="extraCss='this :: cssExtra'"></th:block>
+    </head>
+        <link rel="stylesheet" th:href="@{/css/user/publicar-inmueble.css}">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="/>
+    <body>
+        <nav th:replace="~{layouts/user_layout :: fragNavegacion}"></nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="#">❤️ Favoritos</a></li>
+                        <li class="nav-item"><a class="nav-link active font-weight-bold" href="#">🏠 Publicar inmueble</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">🛠️ Administrar inmuebles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">🛒 Comprar productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">📇 Contactos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">✉️ Mensajes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">📜 Historial de compras</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">📈 Estadísticas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">📰 Blog</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Contenido principal -->
+                <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <div class="form-section mt-4">
+                        <div class="alert alert-info">
+                            <strong>Inmuebles prohibidos:</strong> Recuerda que publicaciones de inmuebles nuevos, sobre planos, en obra negra, remates, negocios o para estrenar están prohibidas.
+                        </div>
+                        <hr>
+                        
+                        <!-- <div class="header-btn"></div>
+                        <div class="panel"></div> -->
+
+                        <!-- COMPONENTE DE NUESTROS-INMUEBLES -->
+                        <div class="property">
+                            <div class="container-box">
+
+                                
+                                
+                                <!-- Selecciones del inmueble -->
+                                <div class="header-btn" >
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="ml-2">Selecciona Distrito del Inmueble</span>
+                                </div>
+                                <div class="panel mb-3">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4 section-title">
+                                            <label for="departamento">Departamento</label>
+                                            <select id="departamento" class="form-control">
+                                                <option selected disabled>Selecciona</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4 section-title">
+                                            <label for="provincia">Provincia</label>
+                                            <select id="provincia" class="form-control" disabled>
+                                                <option selected disabled>Selecciona</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4 section-title">
+                                            <label for="distrito">Distrito</label>
+                                            <select id="distrito" class="form-control" disabled>
+                                                <option selected disabled>Selecciona</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ubicación del inmueble -->
+                                <div class="header-btn">
+                                    📍 Ubicación de tu inmueble
+                                </div>
+                                <div class="panel">
+                                    <div class="form-group">
+                                        <p>Recuerda que después de publicado el anuncio, no podrás modificar la ubicación.</p>
+                                        <label for="direccion">Dirección / punto de referencia <span class="text-danger">*</span></label>
+                                        <input type="text" id="direccion" class="form-control" placeholder="Ej: Carulla 147 Bogotá">
+                                        <small class="form-text text-muted">⚠️ Por seguridad, la dirección no se verá reflejada en la publicación.</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="contenedor-mapa">
+                                    <!-- MAPA -->
+                                    <div id="map" class="mb-4"></div>
+                                </div>
+
+                                <!-- Cuéntanos sobre tu inmueble -->
+                                <div class="header-btn" >
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="ml-2">Cuéntanos sobre tu inmueble</span>
+                                    <!-- <p class="text-muted">Agrega los aspectos más importantes.</p> -->
+                                </div>
+                                <div class="panel mb-5">
+                                    <!-- Tipo de oferta -->
+                                    <div class="form-group">
+                                        <label class="section-title" for="tipoOferta">
+                                            <i class="fa-solid fa-star" style="color :black"></i>Tipo de oferta <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="tipoOferta">
+                                            <option selected disabled>Seleccionar</option>
+                                            <option>Venta</option>
+                                            <option>Alquiler</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Tipo de inmueble -->
+                                    <div class="form-group">
+                                        <label class="section-title" for="tipoInmueble">
+                                            <i class="fas fa-home"style="color :black"></i>Tipo de inmueble <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="tipoInmueble">
+                                            <option selected disabled>Seleccionar</option>
+                                            <option>Apartamento</option>
+                                            <option>Casa</option>
+                                            <option>Oficina</option>
+                                            <option>Local</option>
+                                            <option>Finca</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Estado -->
+                                    <div class="form-group ">
+                                        <label class="section-title" for="estado">
+                                            <i class="fas fa-info-circle"style="color :black"></i>Estado <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="estado">
+                                            <option selected disabled>Seleccionar</option>
+                                            <option>Nuevo</option>
+                                            <option>Usado</option>
+                                            <option>Antiguo</option>
+                                            <option>Local</option>
+                                            <option>En construcción</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Descripción del inmueble -->
+                                    <div class="form-group mt-3">
+                                        <label for="descripcion"><strong>Descripción de tu inmueble <span class="text-danger">*</span></strong></label>
+                                        <textarea class="form-control" id="descripcion" rows="4" maxlength="1500" placeholder="Describe lo que necesitas explicar de tu inmueble en 1500 caracteres. Ej: Espectacular apartamento ubicado en..."></textarea>
+                                        <small class="form-text text-muted"><span id="charCount">0</span>/1500</small>
+                                    </div>
+
+                                    <!-- Subida de fotos -->
+                                    <div class="section-title my-4">
+                                        <label>¿Cómo luce tu inmueble? <span class="text-danger">*</span></label>
+                                        <p class="text-muted">Agrega fotos y tendrás un 98% más probabilidades de vender o arrendar tu inmueble.</p>
+
+                                        <div class="border rounded p-4 text-center bg-light" style="border-style: dashed;">
+                                            <input type="file" id="fotos" class="d-none" multiple accept="image/*">
+                                            <label for="fotos" class="d-block">
+                                            <strong>Sube o arrastra las fotos aquí</strong><br>
+                                            <small>Sube mínimo 1 máximo 20 fotos de tu inmueble.</small>
+                                            </label>
+                                        </div>
+
+                                        <small class="form-text text-muted mt-2">
+                                            Consejos para tomar una buena fotografía <a href="#" target="_blank">aquí</a>
+                                        </small>
+                                    </div>
+                                </div>
+                                
+
+                                <!-- Datos del inmueble -->
+                                <div class="header-btn" >
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="ml-2">Características principales</span>
+                                </div>
+                                <div class="panel mb-5">
+                                    <!-- Habitaciones -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-bed" style="color :black"></i>
+                                        Habitaciones
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">1</div>
+                                        <div class="btn btn-custom">2</div>
+                                        <div class="btn btn-custom">3</div>
+                                        <div class="btn btn-custom">4</div>
+                                        <div class="btn btn-custom">5+</div>
+                                        </div>
+                                    </div>
+                                    <!-- Baños -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-bath "style="color :black"></i>
+                                        Baños
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">1</div>
+                                        <div class="btn btn-custom">2</div>
+                                        <div class="btn btn-custom">3</div>
+                                        <div class="btn btn-custom">4</div>
+                                        <div class="btn btn-custom">5+</div>
+                                        </div>
+                                    </div>
+                                    <!-- Parqueaderos -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-car" style="color :black"></i>
+                                        Parqueaderos
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">1</div>
+                                        <div class="btn btn-custom">2</div>
+                                        <div class="btn btn-custom">3</div>
+                                        <div class="btn btn-custom">4</div>
+                                        <div class="btn btn-custom">5+</div>
+                                        </div>
+                                    </div>
+                                    <!-- Estrato -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-building"style="color :black"></i>
+                                        Estrato
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">1</div>
+                                        <div class="btn btn-custom">2</div>
+                                        <div class="btn btn-custom">3</div>
+                                        <div class="btn btn-custom">4</div>
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">5</div>
+                                        <div class="btn btn-custom">6</div>
+                                        <div class="btn btn-custom">Comercial</div>
+                                        </div>
+                                        <div class="btn-group-custom d-flex flex-wrap">
+                                        <div class="btn btn-custom">Rural</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PRECIOS Y TAMAÑOS -->
+                                <div class="header-btn" >
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="ml-2">Precios y tamaños</span>
+                                    <!-- <p class="text-muted">Agrega los aspectos más importantes.</p> -->
+                                </div>
+                                <div class="panel mb-5">
+                                    <!-- Área Construida -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-ruler-combined"style="color :black"></i>
+                                        Área Construida(m²)<span class="text-danger">*</span>
+                                        </div>
+                                        <div class="range-inputs">
+                                        <input type="number" placeholder="Mínimo" min="0" />
+                                        <input type="number" placeholder="Máximo" min="0" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Área Privada -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-ruler-combined"style="color :black"></i>
+                                        Área privada(m²)
+                                        </div>
+                                        <div class="range-inputs">
+                                        <input type="number" placeholder="Mínimo" min="0" />
+                                        <input type="number" placeholder="Máximo" min="0" />
+                                        </div>
+                                    </div>
+                                
+
+                                    <!-- Precio -->
+                                    <div class="mb-3">
+                                        <div class="section-title">
+                                        <i class="fas fa-dollar-sign" style="color: black"></i>
+                                        Precio (S/)
+                                        </div>
+                                        <div class="range-inputs">
+                                        <input type="number" placeholder="Mínimo" min="0" name="precioMinimo" />
+                                        <input type="number" placeholder="Máximo" min="0" name="precioMaximo" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div><!-- .container-box -->
+                        </div><!-- #filterSidebar -->
+
+
+                            <!-- Botón Publicar -->
+                            <div class="text-right">
+                                <button id="btn-publicar" class="btn font-weight-bold">Publicar</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+
+        
+        <div th:replace="~{layouts/user_layout :: fragScripts}">
+            <!-- PUBLICAR INMUEBLE -->
+            <!-- Bootstrap JS y dependencias -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Leaflet JS -->
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+            <script src="/js/user/publicar-inmueble.js"></script>
+        </div>
+        <script src="/js/user/publicar-inmueble.js"></script>
+       
+    </body>
+</html>

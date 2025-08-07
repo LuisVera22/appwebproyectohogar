@@ -1,0 +1,389 @@
+.carousel-banner-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+#propertyCarousel .property-card {
+    font-family: 'Poppins', sans-serif;
+    width: 360px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 15px auto;
+    flex-shrink: 0;
+}
+
+#propertyCarousel .property-image {
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+#propertyCarousel .property-image:hover {
+    transform: scale(1.02);
+}
+
+#propertyCarousel .property-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+#propertyCarousel .price-tag {
+    background-color: var(--rojo-vino);
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .carousel-banner-container {
+        width: 90%;
+        padding: 10px 0;
+    }
+
+    #propertyCarousel {
+        margin-top: 50px;
+    }
+}
+
+#servicios {
+    background-color: var(--rojo-vino);
+}
+
+#servicios .card {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: auto;
+    height: auto;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    color: var(--negro);
+}
+
+#servicios p {
+    font-family: 'Poppins', sans-serif;
+}
+
+#servicios .boton {
+    background-color: var(--rojo-vino);
+    border-color: var(--rojo-vino);
+    color: var(--marfil);
+}
+
+#propiedades-tendencia {
+    background: var(--marfil);
+    overflow-x: hidden;
+}
+#propiedades-tendencia .row {
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#propiedades-tendencia h1 {
+    color: var(--rojo-vino);
+}
+
+#propiedades-tendencia .property-card {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+#propiedades-tendencia .image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#propiedades-tendencia .image-container .property {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#propiedades-tendencia .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--rojo-vino);
+    color: var(--marfil);
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    font-weight: lighter;
+    border-radius: 4px;
+}
+
+#propiedades-tendencia .agent-avatar {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--marfil);
+    object-fit: cover;
+}
+
+#propiedades-tendencia .property-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#propiedades-tendencia .title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--rojo-vino);
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+#propiedades-tendencia .price {
+    color: var(--negro);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#propiedades-tendencia .property-details {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#propiedades-tendencia .detail {
+    text-align: center;
+    margin: 0 10px;
+}
+
+#propiedades-tendencia .detail strong {
+    display: block;
+    font-size: 1rem;
+    color: #2b2b2b;
+}
+
+#propiedades-tendencia .detail i {
+    font-size: 1rem;
+    color: #555;
+    margin: 4px 0;
+}
+
+#propiedades-tendencia .divider {
+    width: 1px;
+    height: 20px;
+    background-color: #555;
+}
+
+#propiedades-tendencia .address {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+#propiedades-tendencia .address i {
+    color: var(--rojo-vino);
+    margin-right: 16px;
+}
+
+#propiedades-tendencia .boton {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--mostaza-solar);
+    border-color: var(--mostaza-solar);
+    color: var(--marfil);
+}
+
+#propiedades-tendencia .circle {
+    width: 45vw;
+    height: 45vw;
+    background-color: #F5D8B8;
+    border-radius: 50%;
+    position: absolute;
+    left: -15vw;
+}
+
+@media (max-width: 768px) {
+    #propiedades-tendencia .property-card {
+        flex-direction: column;
+        width: 90%;
+        padding: 12px;
+    }
+
+    #propiedades-tendencia .image-container {
+        width: 100%;
+        height: 250px;
+    }
+
+    #propiedades-tendencia .property-info {
+        flex: none;
+        margin: 12px;
+    }
+
+    #propiedades-tendencia .title {
+        font-size: 1.1rem;
+    }
+
+    #propiedades-tendencia .price {
+        font-size: 1rem;
+    }
+
+    #propiedades-tendencia .property-details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #propiedades-tendencia .detail {
+        margin: 8px 0;
+    }
+
+    #propiedades-tendencia .divider {
+        height: 20px;
+        margin: 6px 0;
+    }
+}
+
+#info-intranet .title {
+    color: var(--rojo-vino);
+    font-size: 38px;
+}
+
+#info-intranet .card-status {
+    background-color: var(--marfil);
+}
+
+#info-intranet .btn-explore {
+    color: var(--marfil);
+    background-color: var(--mostaza-solar);
+}
+
+#info-intranet .exclusive-badge {
+    top: 10px;
+    left: 10px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    background-color: var(--rojo-vino);
+    color: #fff;
+    border-radius: 4px;
+}
+
+#encuentra-propiedad {
+    background: var(--rojo-vino);
+}
+
+#encuentra-propiedad h1 {
+    color: var(--marfil);
+}
+
+#encuentra-propiedad .card {
+    background: var(--marfil);
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+#encuentra-propiedad .card-title {
+    color: var(--rojo-vino);
+    font-family: 'Maharlika', sans-serif;
+    font-size: 17px;
+}
+
+#encuentra-propiedad .description {
+    font-family: 'Poppins', sans-serif !important;
+    margin-left: 0;
+}
+
+#informate {
+    background: var(--marfil);
+}
+
+#informate .title-informate-span {
+    color: var(--negro);
+}
+
+#informate .title-informate {
+    color: var(--rojo-vino);
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#informate .lead {
+    font-family: 'Poppins', sans-serif;
+}
+
+#informate .card {
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#informate img {
+    border-radius: 5px;
+}
+
+#informate .title-card {
+    font-size: 16px;
+    color: var(--rojo-vino);
+}
+
+#informate .description {
+    font-size: 14px;
+}
+
+#informate .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#informate .user-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: var(--rojo-vino);
+    margin: 0;
+}
+
+#informate .user-title {
+    font-size: 12px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+#informate .title-card {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#informate .circle-background {
+    width: 25vw;
+    height: 25vw;
+    background-color: #F5D8B8;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+}

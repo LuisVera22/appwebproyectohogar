@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar</title>
+    <style>
+        .button-group{
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="inicio">
+        <div class="container-fluid search-section mt-5">
+            <div class="container mt-5">
+                <div class="slogan-banner m-5 d-flex align-items-center justify-content-center">
+                    <div class="row text-center">
+                        <h1>El sitio #1 en el que confían los agentes <span>inmobiliarios</span></h1>
+                    </div>
+                </div>
+
+                <div class="button-group mt-5">
+                    <button class="active">Comprar</button>
+                    <button class="">Alquilar</button>
+                    <button class="">Proyectos</button>
+
+                </div>
+
+                <div class="search-container">
+                    <form class="search-box" action="/nuestros-inmuebles" method="GET">
+                        <div class="filters-box">
+                            <select name="tipo">
+                                <option value="casa">Casa</option>
+                                <option value="apartamento">Departamento</option>
+                                <option value="habitacion">Habitación</option>
+                                <option value="oficina">Oficina</option>
+                            </select>
+                            <input type="text" name="ubicacion" placeholder="Busca por ubicación" />
+                        </div>
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="propertyCarousel" class="carousel-banner-container carousel slide swiper" data-ride="carousel">
+            <div class="card-wrapper">
+                <ul class="card-list swiper-wrapper mb-5">
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/departamento.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/img1.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/img2.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/img3.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/img4.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/property/img5.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/categorias/categoria1.jpeg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/categorias/categoria2.jpeg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/categorias/categoria3.jpg');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-card shadow swiper-slide">
+                        <div class="property-image" style="background-image: url('/img/categorias/categoria4.webp');">
+                            <div class="property-info">
+                                <p class="mb-1">
+                                    Impecable Flat 1er piso c/<br>
+                                    amplia terraza y jardín frente a<br>
+                                    parque – Surco límite con<br>
+                                    Miraflores
+                                </p>
+                                <div class="price-tag">
+                                    Desde $ 160 000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <section id="servicios" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 d-flex mb-4 mb-md-0">
+                        <div class="card flex-grow-1 shadow-lg">
+                            <div class="card-body d-flex flex-column text-center px-4 py-5">
+                                <i class="fas fa-home fa-4x mb-4"></i>
+                                <h3 class="mb-4 font-weight-bold">Compra un immueble</h3>
+                                <p class="flex-grow-1 mb-4">
+                                    Descubre propiedades en venta y agenda una visita con vendedores verificados. Encuentra
+                                    tu nuevo hogar con total seguridad y respaldo.
+                                </p>
+<!--                                <a href="#" class="btn boton align-self-center">Busca casas</a>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex mb-4 mb-md-0">
+                        <div class="card flex-grow-1 shadow-lg">
+                            <div class="card-body d-flex flex-column text-center px-4 py-5">
+                                <i class="fas fa-home fa-4x mb-4"></i>
+                                <h3 class="mb-4 font-weight-bold">Alquila un immueble</h3>
+                                <p class="flex-grow-1 mb-4">
+                                    Explora opciones de alquiler a mediano y largo plazo dentro de una red confiable de
+                                    arrendadores validados. Vive tranquilo desde el primer día.
+                                </p>
+<!--                                <a href="#" class="btn boton align-self-center">Busca alquileres</a>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <div class="card flex-grow-1 shadow-lg">
+                            <div class="card-body d-flex flex-column text-center px-4 py-5">
+                                <i class="fas fa-home fa-4x mb-4"></i>
+                                <h3 class="mb-4 font-weight-bold">Vende un immueble</h3>
+                                <p class="flex-grow-1 mb-4">
+                                    Publica tu propiedad y recibe apoyo de agentes verificados que te ayudarán a vender más
+                                    rápido. Tú decides si colaboras con otros agentes para acelerar la venta.
+                                </p>
+<!--                                <a href="#" class="btn boton align-self-center">Subir anuncio</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="propiedades-tendencia" class="py-5">
+            <div class="circle"></div>
+            <div class="col-md-12">
+                <h1 class="text-center font-weight-bold mt-5 mb-5">Propiedades en tendencia</h1>
+                <div class="row">
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/departamento.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/img1.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/img2.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/img3.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/img4.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="property-card">
+                        <div class="image-container">
+                            <img src="/img/property/img5.jpg" alt="Propiedad" class="property">
+                            <span class="badge">En venta</span>
+                            <img src="/img/agentes/agente-inmobiliario.webp" alt="Agente" class="agent-avatar">
+                        </div>
+                        <div class="property-info">
+                            <h2 class="title">Casa Familiar de Lujo</h2>
+                            <p class="price">$ 160 000</p>
+
+                            <div class="property-details">
+                                <div class="detail">
+                                    <strong>
+                                        3
+                                        <i class="fas fa-bed ml-2"></i>
+                                    </strong>
+                                    <span>Dormitorios</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        2
+                                        <i class="fas fa-toilet ml-2"></i>
+                                    </strong>
+                                    <span>Baños</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="detail">
+                                    <strong>
+                                        120
+                                        <i class="fas fa-vector-square ml-2"></i>
+                                    </strong>
+                                    <span>Área (m²)</span>
+                                </div>
+                            </div>
+
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. Lima 154, San Borja, Lima</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center mt-5 mb-5">
+                    <a class="btn boton">Más Propiedades</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="info-intranet">
+            <div class="container py-5">
+                <h1 class="title font-weight-bold">Promociona estas propiedades y gana comisiones desde hoy</h1>
+                <p>¿Eres agente inmobiliario? Aquí encontrarás inmuebles listos para ser promovidos.<br>
+                    Colabora con otros agentes, accede a propiedades exclusivas y gana comisiones compartidas sin complicaciones.</p>
+
+                <div class="row my-4">
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm p-3 card-status">
+                            <div class="h6">S/ - -</div>
+                            <small class="text-muted">Ganancias obtenidas</small>
+                            <div class="h6">55</div>
+                            <small class="text-muted">Nuevos prospectos</small>
+                            <div class="d-flex justify-content-around">
+                                <div><strong>-- %</strong><br><small>Comisiones</small></div>
+                                <div><strong>-- %</strong><br><small>Visualizaciones</small></div>
+                                <div><strong>-- %</strong><br><small>TDR de hoy</small></div>
+                            </div>
+                        </div>
+                        <button class="btn btn-explore btn-block mt-3 font-weight-bold">Explora oportunidades</button>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="row">
+                            <!-- Tarjeta 1 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="position-relative">
+                                        <img src="/img/categorias/categoria1.jpeg" class="card-img-top" alt="Propiedad 1">
+                                        <span class="badge badge-danger position-absolute exclusive-badge">Exclusivo para agentes</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="bg-secondary rounded mb-2" style="height: 16px; width: 70%;"></div>
+                                        <div class="bg-secondary rounded" style="height: 12px; width: 50%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 2 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="position-relative">
+                                        <img src="/img/categorias/categoria2.jpeg" class="card-img-top" alt="Propiedad 2">
+                                        <span class="badge badge-danger position-absolute exclusive-badge">Exclusivo para agentes</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="bg-secondary rounded mb-2" style="height: 16px; width: 70%;"></div>
+                                        <div class="bg-secondary rounded" style="height: 12px; width: 50%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 3 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="position-relative">
+                                        <img src="/img/categorias/categoria1.jpeg" class="card-img-top" alt="Propiedad 3">
+                                        <span class="badge badge-danger position-absolute exclusive-badge">Exclusivo para agentes</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="bg-secondary rounded mb-2" style="height: 16px; width: 70%;"></div>
+                                        <div class="bg-secondary rounded" style="height: 12px; width: 50%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-muted small mt-2">+100 agentes ya están generando ingresos desde nuestra red.</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="encuentra-propiedad" class="py-5">
+            <div class="container">
+                <h1 class="text-center font-weight-bold mb-5 text-white">Encuentra una propiedad en 3 simples pasos</h1>
+
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="card h-100">
+                            <div class="row no-gutters h-100">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-city fa-3x"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body py-3">
+                                        <h5 class="card-title">Paso 1 - Explora inmuebles</h5>
+                                        <p class="description">
+                                            🔍 Filtra por ubicación, tipo de propiedad y precio. Encuentra
+                                            opciones que se ajusten a lo que estás buscando.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="card h-100">
+                            <div class="row no-gutters h-100">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <i class="far fa-calendar-alt fa-3x"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body py-3">
+                                        <h5 class="card-title font-weight-bold">Paso 2 - Agenda una visita</h5>
+                                        <p class="description">
+                                            📅 Elige día y hora. Uno de nuestros agentes verificados te
+                                            acompañará en el proceso de evaluación.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="row no-gutters h-100">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-store fa-3x"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body py-3">
+                                        <h5 class="card-title font-weight-bold">Paso 3 - Compra o alquila</h5>
+                                        <p class="description">
+                                            ✅ Finaliza la operación con total seguridad, respaldo legal y
+                                            asesoría personalizada.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="informate" class="py-5">
+            <div class="circle-background"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-5 mb-4 mb-md-0">
+                        <h2 class="mb-3 title-informate">Infórmate con lo último del sector <span class="title-informate-span">inmobiliario</span></h2>
+                        <p class="lead">
+                            Noticias, consejos y análisis que te ayudarán a tomar mejores decisiones
+                            al comprar, vender o invertir en propiedades.
+                        </p>
+                        <a class="learn-more" href="/blogs">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Ver más</span>
+                        </a>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="/img/servicio-asesoria.jpg" class="m-3 img-fluid rounded" alt="Noticia 1">
+                                    <div class="card-body">
+                                        <h4 class="title-card">¿Qué tener en cuenta antes de comprar tu primera casa?</h4>
+                                        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus eos harum corrupti.</p>
+                                    </div>
+                                    <div class="d-flex align-items-center px-3 pb-3 justify-content-end">
+                                        <div class="text-right">
+                                            <h4 class="user-name mb-0">Ana Torres</h4>
+                                            <p class="user-title mb-0">Asesora Inmobiliaria</p>
+                                        </div>
+                                        <img src="/img/agentes/agente-inmobiliario.webp" alt="Avatar" class="user-avatar me-3 ml-3">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="/img/servicio-asesoria.jpg" class="m-3 img-fluid rounded" alt="Noticia 2">
+                                    <div class="card-body">
+                                        <h4 class="title-card">Tendencias de compra en el 2025 y cómo aprovecharlas</h4>
+                                        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus eos harum corrupti.</p>
+                                    </div>
+                                    <div class="d-flex align-items-center px-3 pb-3 justify-content-end">
+                                        <div class="text-right">
+                                            <h4 class="user-name mb-0">Ana Torres</h4>
+                                            <p class="user-title mb-0">Asesora Inmobiliaria</p>
+                                        </div>
+                                        <img src="/img/agentes/agente-inmobiliario.webp" alt="Avatar" class="user-avatar me-3 ml-3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+        <script src="/js/inicio/inicio.js"></script>
+    </footer>
+
+</body>
+
+</html>

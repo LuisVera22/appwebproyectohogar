@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Nuestros Servicios</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/estilo-servicios.css" />
+
+<body>
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="nuestros_servicios">
+
+        <div class="parallax">
+            <div class="parallax-cuerpo">
+                <div id="titulo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-white">
+                                <h1>Nuestros Servicios</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-center mb-5 mt-5">
+            Te ofrecemos una amplia gama de servicios inmobiliarios para facilitar la compra, venta y alquiler de
+            propiedades.
+        </h4>
+
+        <div class="container my-5">
+            <div class="row g-4 align-items-center">
+                <!-- Lado Izquierdo -->
+                <div class="col-md-6">
+                    <img th:src="@{/img/servicio-compra.jpg}" class="img-fluid rounded shadow-sm"
+                        alt="Compra de propiedades">
+                </div>
+                <!-- Lado Derecho -->
+                <div class="col-md-6">
+                    <h3 class="mb-3">Compra y Venta de Propiedades</h3>
+                    <p class="mb-4">
+                        En ProyectoHogar te guiamos en cada paso del proceso de compra o venta de tu propiedad,
+                        asegurando transparencia, confianza y eficacia.
+                    </p>
+
+                    <!-- Sección 1 -->
+                    <div class="d-flex align-items-start mb-3">
+                        <img th:src="@{/img/asesoria.png}" class="mr-3" style="width: 40px; height: 40px;"
+                            alt="Icono 1">
+                        <div>
+                            <h6 class="fw-bold mb-1">Asesoría Personalizada</h6>
+                            <p class="mb-0">Nuestros expertos te acompañan durante todo el proceso para que tomes la
+                                mejor decisión.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 2 -->
+                    <div class="d-flex align-items-start mb-3">
+                        <img th:src="@{/img/documentos.png}" class="mr-3" style="width: 40px; height: 40px;"
+                            alt="Icono 2">
+                        <div>
+                            <h6 class="fw-bold mb-1">Documentación Segura</h6>
+                            <p class="mb-0">Nos encargamos de todos los trámites legales y notariales con total
+                                seguridad.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 3 -->
+                    <div class="d-flex align-items-start mb-3">
+                        <img th:src="@{/img/oferta.png}" class="mr-3" style="width: 40px; height: 40px;" alt="Icono 3">
+                        <div>
+                            <h6 class="fw-bold mb-1">Amplia Oferta Inmobiliaria</h6>
+                            <p class="mb-0">Contamos con diversas propiedades disponibles para todo tipo de necesidades.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!-- ¿Por qué elegirnos?            -->
+
+        <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
+        <p class="text-center mb-5">Te contamos por qué somos la mejor opción para tu proyecto inmobiliario.</p>
+
+        <!-- Segundo Slider -->
+        <div class="slider">
+            <div class="slide-track">
+                <!-- Slides (5) -->
+                <div class="slide">
+                    <h3>Bienestar Social</h3>
+                    <img th:src="@{/img/logo1.png}" alt="" class="slide-img">
+                    <p>Demostramos nuestro compromiso por el Bienestar de todos nuestros clientes para asi seguir
+                        trabajando juntos.</p>
+                </div>
+                <div class="slide">
+                    <h3>Confianza</h3>
+                    <img th:src="@{/img/logo2.png}" alt="" class="slide-img">
+                    <p>A lo largo de los años trabajando los clientes, varios clientes nos eligen por la buena confianza
+                        que le brindamos.</p>
+                </div>
+                <div class="slide">
+                    <h3>Reconocimiento Internacional</h3>
+                    <img th:src="@{/img/logo3.png}" alt="" class="slide-img">
+                    <p>Somos un compañia reconocida internacionalmente en más de 100 paises por nuestro buen trabajo.
+                    </p>
+                </div>
+                <div class="slide">
+                    <h3>Buena Calificación</h3>
+                    <img th:src="@{/img/logo4.png}" alt="" class="slide-img">
+                    <p>Somos de las mejores Compañias calificadas por nuestros mismo clientes a nivel Internacional.</p>
+                </div>
+                <div class="slide">
+                    <h3>Ubicación</h3>
+                    <img th:src="@{/img/logo5.png}" alt="" class="slide-img">
+                    <p>Estamos estrategicamente ubicados en varias partes a nivel Nacional, donde podra ver nuestras
+                        ubicaciones.</p>
+                </div>
+
+                <!-- SLIDERS CLONES -->
+                <div class="slide">
+                    <h3>Bienestar Social</h3>
+                    <img th:src="@{/img/logo1.png}" alt="" class="slide-img">
+                    <p>Demostramos nuestro compromiso por el Bienestar de todos nuestros clientes para asi seguir
+                        trabajando juntos.</p>
+                </div>
+                <div class="slide">
+                    <h3>Confianza</h3>
+                    <img th:src="@{/img/logo2.png}" alt="" class="slide-img">
+                    <p>A lo largo de los años trabajando los clientes, varios clientes nos eligen por la buena confianza
+                        que le brindamos.</p>
+                </div>
+                <div class="slide">
+                    <h3>Reconocimiento Internacional</h3>
+                    <img th:src="@{/img/logo3.png}" alt="" class="slide-img">
+                    <p>Somos un compañia reconocida internacionalmente en más de 100 paises por nuestro buen trabajo.
+                    </p>
+                </div>
+                <div class="slide">
+                    <h3>Buena Calificación</h3>
+                    <img th:src="@{/img/logo4.png}" alt="" class="slide-img">
+                    <p>Somos de las mejores Compañias calificadas por nuestros mismo clientes a nivel Internacional.</p>
+                </div>
+                <div class="slide">
+                    <h3>Ubicación</h3>
+                    <img th:src="@{/img/logo5.png}" alt="" class="slide-img">
+                    <p>Estamos estrategicamente ubicados en varias partes a nivel Nacional, donde podra ver nuestras
+                        ubicaciones.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+</body>
+
+</html>

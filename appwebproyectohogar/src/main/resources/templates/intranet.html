@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head}">
+</head>
+    <style>
+      .color-h2 {
+        color: var(--rojo-vino);
+      }
+    .position-relative img {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .hero-text h1 {
+      color: #6b0f1a;
+      font-weight: bold;
+    }
+    .hero-text span {
+      color: #d72638;
+    }
+    #AgenteInmobiliario{
+      border-radius: 1rem;
+    }
+    .section-title {
+      color: #6b0f1a;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 30px;
+    }
+    .btn-yellow {
+      border: 0.2rem solid #fbbf24;
+      background-color: #fbbf24;
+      color: black;
+      font-weight: bold;
+      transition: scale 0.3s ease-in-out;
+    }
+    .btn-yellow:hover {
+      background-color: #f1a21a;
+      color: white;
+      scale: 1.05;
+      /* border: 0.2rem solid #fbbf24; */
+    }
+    .feature-icon {
+      font-size: 40px;
+      color: #d72638;
+    }
+    .property-card {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* Ultima sesion */
+    .highlight-text {
+      color: #a61d4c;
+      font-weight: bold;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #a61d4c;
+    }
+    .card-body p {
+      font-size: 0.9rem;
+    }
+    .author {
+      font-weight: bold;
+      color: #a61d4c;
+      margin-bottom: 0;
+    }
+    .role {
+      font-size: 0.8rem;
+    }
+    #informate {
+        background: var(--marfil);
+    }
+
+    #informate .title-informate-span {
+        color: var(--negro);
+    }
+
+    #informate .title-informate {
+        color: var(--rojo-vino);
+        font-weight: bold;
+        font-size: 35px;
+    }
+
+    #informate .lead {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #informate .card {
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #informate img {
+        border-radius: 5px;
+    }
+
+    #informate .title-card {
+        font-size: 16px;
+        color: var(--rojo-vino);
+    }
+
+    #informate .description {
+        font-size: 14px;
+    }
+
+    #informate .user-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    #informate .user-name {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        color: var(--rojo-vino);
+        margin: 0;
+    }
+
+    #informate .user-title {
+        font-size: 12px;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    #informate .title-card {
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    #informate .circle-background {
+        width: 25vw;
+        height: 25vw;
+        background-color: #F5D8B8;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+    }
+  </style>
+<body>
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+        <!-- Hero Section -->
+    <section class="container py-5" style="margin-top: 6rem;">
+    <div class="row align-items-center">
+        <div class="col-md-6 hero-text">
+          <!-- style="color: #8b1e3f; -->
+        <h1 class="color-h2"  style="font-weight: bold;">Una red de agentes que venden más,<br><span style="color: #000000;">colaborando</span> entre sí</h1>
+        <p class="mt-3">Únete a una comunidad de agentes inmobiliarios que comparten propiedades y comisiones para cerrar ventas más rápido.</p>
+        <!-- style="background-color: var(--mostaza-solar); -->
+        <a href="registrar-agentes" class="btn btn-yellow mt-3" >Regístrate gratis y comienza hoy</a><br>
+        <small class="d-block mt-2 fs-6">¿Ya trabajas con nosotros? <a style="color: #6b0f1a;" href="#">Accede a tu panel de control</a>.</small>
+        </div>
+        <div class="col-md-6">
+        <img th:src="@{/img/AgenteInmobiliario.png}" id="AgenteInmobiliario" class="img-fluid rounded-2" height="500px" width="400px" alt="Agente inmobiliario">
+        </div>
+    </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-5 text-center">
+        <img th:src="@{/img/phoneIntranet.png}" class="img-fluid" alt="App en móvil">
+        </div>
+        <div class="col-md-7">
+        <h2 class="mb-4 color-h2">Gestiona fácilmente <span style="color: #000000;">tus clientes, propiedades y comisiones</span> desde un solo lugar</h2>
+        <ul>
+            <li><strong>Comunicación directa:</strong> chatea con compradores y agenda citas.</li>
+            <li><strong>Administra propiedades:</strong> controla todo desde un solo panel.</li>
+            <li><strong>Estadísticas en tiempo real:</strong> conoce el rendimiento de tus publicaciones.</li>
+        </ul>
+        </div>
+    </div>
+    </section>
+
+<!-- Sección: Vende propiedades y gana comisiones -->
+<section class="container-fluid py-5" style="background-color: #fef6f3;">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Texto -->
+      <div class="col-md-7 mb-4 mb-md-0">
+        <h2 class="color-h2" style="font-weight: bold;">
+          Vende propiedades y gana comisiones<br>colaborando con otros agentes
+        </h2>
+        <p class="mt-3" style="font-size: 0.95rem;">
+          Accede a inmuebles disponibles para venta compartida. Colabora con agentes verificados y genera ingresos sin tener tus propias propiedades.
+        </p>
+        <a href="/registrar-agentes" class="btn btn-warning mt-2" style="font-weight: bold; font-size: 0.9rem;">Unirte como agente</a>
+      </div>
+
+      <!-- Imagen simulando tarjetas apiladas -->
+      <div class="col-md-5 text-center">
+        <div class="position-relative d-inline-block" style="width: 220px; height: 200px;">
+
+          <!-- Tarjeta base (más atrás) -->
+          <div class="property-card position-absolute   bg-light" style="top: 40px; left: 20px; z-index: 1; ">
+            <img th:src="@{/img/property/img1.jpg}" class="img-fluid" alt="Propiedad base">
+            <div class="p-3">
+              <p style="background-color: #d5d5d5;">ㅤㅤㅤㅤ ㅤㅤㅤㅤ</p>
+            </div>
+          </div>
+
+          <!-- Tarjeta intermedia -->
+          <div class="property-card position-absolute bg-light" style="top: 20px; left: 10px; z-index: 2;">
+            <img th:src="@{/img/property/img1.jpg}" class="img-fluid" alt="Propiedad intermedia">
+            <div class="p-3">
+              <p style="background-color: #d5d5d5;">ㅤㅤㅤㅤ ㅤㅤㅤㅤ</p>
+            </div>
+          </div>
+
+          <!-- Tarjeta principal -->
+          <div class="property-card position-absolute bg-light" style="top: 0; left: 0; z-index: 3;">
+            <img th:src="@{/img/property/img1.jpg}" class="img-fluid" alt="Propiedad frontal">
+            <div class="p-3">
+              <p style="background-color: #d5d5d5;">ㅤㅤㅤㅤ ㅤㅤㅤㅤ</p>
+
+            </div>
+          </div>
+          <span class="badge badge-dark position-absolute" style="z-index: 4; top: 10px; left: 10px;">Exclusivo para agentes</span>
+
+          <!-- <img th:src="@{/img/property/img1.jpg}" class="img-fluid position-absolute" style="z-index: 1; top: 40px; left: 20px; width: 100%;">
+          <img th:src="@{/img/property/img1.jpg}" class="img-fluid position-absolute" style="z-index: 2; top: 20px; left: 10px; width: 100%;">
+          <img th:src="@{/img/property/img1.jpg}" class="img-fluid position-absolute" style="z-index: 3; top: 0; left: 0; width: 100%;">
+          <span class="badge badge-dark position-absolute" style="z-index: 4; top: 10px; left: 10px;">Exclusivo para agentes</span> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Sección de confianza -->
+    <section class="container py-5">
+    <h2 class="section-title" style="color: #8b1e3f;" >Tu aliado inmobiliario de confianza</h2>
+    <div class="row text-center">
+        <div class="col-md-4">
+        <img th:src="@{/img/TarifasCompetitivas.png}" height="150px" width="140px" alt="">
+        <h5>Tarifas Competitivas</h5>
+        <p>Promociona sin comisiones ocultas ni contratos amarros.</p>
+        </div>
+        <div class="col-md-4">
+        <img th:src="@{/img/HerramientasTrabajo.png}" height="150px" width="140px" alt="">
+        <h5>Herramientas que te facilitan</h5>
+        <p>Agenda visitas, accede a estadísticas y colabora sin complicaciones.</p>
+        </div>
+        <div class="col-md-4">
+        <img th:src="@{/img/RedAgentes.png}" height="150px" width="140px" alt="">
+        <h5>Red de agentes verificados</h5>
+        <p>Conecta con agentes activos que comparten oportunidades.</p>
+        </div>
+    </div>
+    </section>
+
+      <!-- Propiedades destacadas -->
+<!--       <section id="PromocionaPropiedades" class="container py-5">  
+      <h2 class="color-h2">Promociona estas propiedades y gana comisiones desde hoy</h2>
+      <p class="">¿Eres agente inmobiliario? Aquí encontrarás inmuebles listos para ser promovidos.
+        Colabora con otros agentes, accede a propiedades exclusivas y gana comisiones compartidas sin complicaciones.</p>
+      <div class="text-center mb-4">
+          <a href="#" class="btn btn-warning">Explora oportunidades</a>
+      </div>
+      <div class="row">
+          <div class="col-md-4 mb-4">
+          <div class="property-card">
+              <img th:src="@{/img/property/img1.jpg}" class="img-fluid" alt="Propiedad 1">
+              <div class="p-3">
+              <span class="badge badge-danger">Exclusivo para agentes</span>
+              <p>Casa moderna en Lima - S/ 250,000</p>
+              </div>
+          </div>
+          </div>
+          <div class="col-md-4 mb-4">
+          <div class="property-card">
+              <img th:src="@{/img/categorias/categoria4.webp}" class="img-fluid" alt="Propiedad 2">
+              <div class="p-3">
+              <span class="badge badge-danger">Exclusivo para agentes</span>
+              <p>Departamento Miraflores - S/ 450,000</p>
+              </div>
+          </div>
+          </div>
+          <div class="col-md-4 mb-4">
+          <div class="property-card">
+              <img th:src="@{/img/property/img1.jpg}" class="img-fluid" alt="Propiedad 3">
+              <div class="p-3">
+              <span class="badge badge-danger">Exclusivo para agentes</span>
+              <p>Casa de playa Asia - S/ 850,000</p>
+              </div>
+          </div>
+          </div>
+      </div>
+    </section> -->
+    <!-- Propiedades destacadas -->
+    <section id="PromocionaPropiedades" class="container-fluid py-5" style="background-color: #fef6f3;">
+      <div class="container">
+        <h1 class="color-h2" style="font-weight: bold;">
+          Promociona estas propiedades y gana comisiones desde hoy
+        </h1>
+        <p>
+          ¿Eres agente inmobiliario? Aquí encontrarás inmuebles listos para ser promovidos.<br>
+          Colabora con otros agentes, accede a propiedades exclusivas y gana comisiones compartidas sin complicaciones.
+        </p>
+
+        <div class="row align-items-start mt-4">
+
+          <!-- Cuadro de estadísticas -->
+          <div class="col-md-4">
+            <div class="bg-white p-4 shadow rounded-3 ">
+              <div class="row mb-4">
+                <div class="col-6 text-center">
+                  <h5>S/ --</h5>
+                  <p class="mb-0 text-muted">Ganancias obtenidas</p>
+                </div>
+                <div class="col-6 text-center">
+                  <h5>55</h5>
+                  <p class="mb-0 text-muted">Nuevos prospectos</p>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="col-4">
+                  <small class="text-muted">-- %</small><br>
+                  <small class="text-muted">Comisiones</small>
+                </div>
+                <div class="col-4">
+                  <small class="text-muted">-- %</small><br>
+                  <small class="text-muted">Visualizaciones</small>
+                </div>
+                <div class="col-4">
+                  <small class="text-muted">-- %</small><br>
+                  <small class="text-muted">TDR de hoy</small>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <a href="#" class="btn btn-warning w-100 font-weight-bold">Explora oportunidades</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjetas de propiedades -->
+          <div class="col-md-8">
+            <div class="row">
+              <!-- Propiedad 1 -->
+              <div class="col-md-4 mb-4">
+                <div class="property-card shadow rounded-3">
+                  <img th:src="@{/img/property/img1.jpg}" class="img-fluid rounded-top" alt="Propiedad 1">
+                  <div class="p-3">
+                    <span class="badge badge-danger">Exclusivo para agentes</span>
+                    <p class="mb-0 mt-2">Casa moderna en Lima - S/ 250,000</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Propiedad 2 -->
+              <div class="col-md-4 mb-4">
+                <div class="property-card shadow rounded-3">
+                  <img th:src="@{/img/categorias/categoria4.webp}" class="img-fluid rounded-top" alt="Propiedad 2">
+                  <div class="p-3">
+                    <span class="badge badge-danger">Exclusivo para agentes</span>
+                    <p class="mb-0 mt-2">Departamento Miraflores - S/ 450,000</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Propiedad 3 -->
+              <div class="col-md-4 mb-4">
+                <div class="property-card shadow rounded-3">
+                  <img th:src="@{/img/property/img1.jpg}" class="img-fluid rounded-top" alt="Propiedad 3">
+                  <div class="p-3">
+                    <span class="badge badge-danger">Exclusivo para agentes</span>
+                    <p class="mb-0 mt-2">Casa de playa Asia - S/ 850,000</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <p class="text-muted mt-3">+100 agentes ya están generando ingresos desde nuestra red.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INFORMATE -->
+    <section id="informate" class="py-5">
+        <div class="circle-background"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-4 mb-md-0">
+                    <h2 class="mb-3 title-informate">Infórmate con lo último del sector <span class="title-informate-span">inmobiliario</span></h2>
+                    <p class="lead">
+                        Noticias, consejos y análisis que te ayudarán a tomar mejores decisiones
+                        al comprar, vender o invertir en propiedades.
+                    </p>
+                    <a class="learn-more" href="/blogs">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">Ver más</span>
+                    </a>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <img src="/img/servicio-asesoria.jpg" class="m-3 img-fluid rounded" alt="Noticia 1">
+                                <div class="card-body">
+                                    <h4 class="title-card">¿Qué tener en cuenta antes de comprar tu primera casa?</h4>
+                                    <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus eos harum corrupti.</p>
+                                </div>
+                                <div class="d-flex align-items-center px-3 pb-3 justify-content-end">
+                                    <div class="text-right">
+                                        <h4 class="user-name mb-0">Ana Torres</h4>
+                                        <p class="user-title mb-0">Asesora Inmobiliaria</p>
+                                    </div>
+                                    <img src="/img/agentes/agente-inmobiliario.webp" alt="Avatar" class="user-avatar me-3 ml-3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <img src="/img/servicio-asesoria.jpg" class="m-3 img-fluid rounded" alt="Noticia 2">
+                                <div class="card-body">
+                                    <h4 class="title-card">Tendencias de compra en el 2025 y cómo aprovecharlas</h4>
+                                    <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus eos harum corrupti.</p>
+                                </div>
+                                <div class="d-flex align-items-center px-3 pb-3 justify-content-end">
+                                    <div class="text-right">
+                                        <h4 class="user-name mb-0">Ana Torres</h4>
+                                        <p class="user-title mb-0">Asesora Inmobiliaria</p>
+                                    </div>
+                                    <img src="/img/agentes/agente-inmobiliario.webp" alt="Avatar" class="user-avatar me-3 ml-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+  </main>
+  <footer>
+      <div th:replace="~{layouts/main_layout :: footer}"></div>
+      <script src="/js/inicio/inicio.js"></script>
+  </footer>
+</body>
+</html>

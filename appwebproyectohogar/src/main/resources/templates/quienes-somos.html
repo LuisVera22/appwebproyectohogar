@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Quienes Somos</title>
+</head>
+
+<style>
+  .slider {
+  width: 80%; 
+  height: 250px; 
+  place-items: center;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+
+.slider::before,
+.slider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 15%;  
+  z-index: 2;
+  pointer-events: none; 
+}
+
+
+
+
+.slider::before {
+  left: 0;
+  background: linear-gradient(to right, var(--marfil)  0%, rgba(255,255,255,0) 80%);
+}
+
+.slider::after {
+  right: 0;
+  background: linear-gradient(to left,var(--marfil)  0%, rgba(255,255,255,0) 80%);
+}
+
+
+.slide-track {
+  display: flex;
+  flex-direction: row; /* fila para horizontal */
+  width: calc(300px * 16); /* 16 slides (replicados) */
+  height: 250px;
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+.slide-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-300px * 8)); /* mueve el ancho de 8 slides */
+  }
+}
+
+.slide {
+  flex: 0 0 300px; /* ancho fijo de cada slide */
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slide:hover {
+  transform: scale(1.1);
+}
+
+.slide img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.slide p {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .slider {
+    width: 95%;
+    height: 180px;
+  }
+
+  .slider::before,
+  .slider::after {
+    width: 10%; /* menos ancho para no tapar demasiado */
+  }
+
+  .slide-track {
+    width: calc(200px * 16); /* slides más pequeños */
+    height: 180px;
+    animation: scroll-horizontal 20s linear infinite;
+  }
+
+  .slide {
+    flex: 0 0 200px; /* ancho más pequeño */
+    height: 180px;
+  }
+}
+
+.card-solid {
+  background-color: var(--marfil);}
+</style>
+</head>
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="quienes_somos">
+        <!-- Parallax -->
+        <div class="parallax">
+            <div class="parallax-cuerpo">
+                <div id="titulo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-white">
+                                <h1>¿Quienes Somos?</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Historia -->
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h2>Nuestra Historia</h2>
+                    <section class="text-justify">
+                        <p>Fundada en 2005, nuestra inmobiliaria ha ayudado a cientos de familias a encontrar su hogar
+                            ideal.
+                            Con más de 15 años de experiencia en el sector inmobiliario, ofrecemos soluciones a medida
+                            para
+                            cada
+                            necesidad.</p>
+                        <p>Desde nuestros inicios, hemos trabajado con la misión de ofrecer propiedades de calidad,
+                            adaptadas a
+                            las expectativas de nuestros clientes, y con un equipo de expertos en cada área del proceso
+                            de
+                            compra o alquiler.</p>
+                        <p>Fundada en 2005, nuestra inmobiliaria ha ayudado a cientos de familias a encontrar su hogar
+                            ideal.
+                            Con más de 15 años de experiencia en el sector inmobiliario, ofrecemos soluciones a medida
+                            para
+                            cada
+                            necesidad.</p>
+                    </section>
+                </div>
+                <div class="col-lg-6 text-center m-auto">
+                    <img class="img-circle img-fluid"
+                        src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+                        alt="Historia de la inmobiliaria">
+                </div>
+            </div>
+
+            <div class="row mb-5 text-center">
+                <div class="col-12">
+                    <h2>Conoce a nuestro equipo</h2>
+                    <hr>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-solid">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <img class="img-circle img-fluid"
+                                    src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+                                    alt="Miembro del equipo">
+                            </div>
+                            <h5>Juan Pérez</h5>
+                            <p>Director General</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-solid">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <img class="img-circle img-fluid"
+                                    src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+                                    alt="Miembro del equipo">
+                            </div>
+                            <h5>María López</h5>
+                            <p>Asesora Inmobiliaria</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-solid">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <img class="img-circle img-fluid"
+                                    src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+                                    alt="Miembro del equipo">
+                            </div>
+                            <h5>Carlos García</h5>
+                            <p>Gerente de Ventas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="text-center">
+            <h2>Nuestros Valores</h2>
+
+        </section>
+        
+         
+
+
+        <section>
+
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Compromiso" />
+                        <p><strong>Compromiso</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="Honestidad" />
+                        <p><strong>Honestidad</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Trabajo en equipo" />
+                        <p><strong>Trabajo en equipo</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Respeto" />
+                        <p><strong>Respeto</strong>.</p>
+
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4771/4771130.png" alt="Innovación" />
+                        <p><strong>Innovación</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="Responsabilidad" />
+                        <p><strong>Responsabilidad</strong>
+                    </div>
+
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Confianza" />
+                        <p><strong>Confianza</strong></p>
+                    </div>
+
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6011/6011044.png" alt="Transparencia" />
+                        <p><strong>Transparencia</strong></p>
+                    </div>
+
+
+
+
+                    <div class="slide">
+                        < <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Compromiso" />
+                        <p><strong>Compromiso</strong></p>
+                    </div>
+
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="Honestidad" />
+                        <p><strong>Honestidad</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Trabajo en equipo" />
+                        <p><strong>Trabajo en equipo</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Respeto" />
+                        <p><strong>Respeto</strong>.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4771/4771130.png" alt="Innovación" />
+                        <p><strong>Innovación</strong></p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="Responsabilidad" />
+                        <p><strong>Responsabilidad</strong>
+                    </div>
+
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Confianza" />
+                        <p><strong>Confianza</strong></p>
+                    </div>
+
+                    <div class="slide">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6011/6011044.png" alt="Transparencia" />
+                        <p><strong>Transparencia</strong></p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+
+</body>
+
+</html>
