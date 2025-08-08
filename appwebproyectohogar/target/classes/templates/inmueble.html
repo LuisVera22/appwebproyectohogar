@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Inmueble</title>
+</head>
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="inmueble">
+        <div class="container mb-5">
+            <div class="gallery-wrapper">
+                <div class="swiper-container main-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/img/property/img1.jpg"
+                                 alt="Casa de lujo" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/img/property/img2.jpg"
+                                 alt="Interiores" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/img/property/img3.jpg"
+                                 alt="Fachada piedra" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/img/property/img4.jpg"
+                                 alt="Residencial" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/img/property/img5.jpg"
+                                 alt="Departamento" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-overlay">
+                    <h3>Casa Familiar de Lujo</h3>
+                    <div class="price">$ 160 000.00</div>
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Av. Lima 154, San Borja, Lima
+                    </div>
+                </div>
+
+                <div class="thumb-zone">
+                    <div class="swiper-container thumb-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="/img/property/img1.jpg"
+                                     alt="Thumb 1" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/img/property/img2.jpg"
+                                     alt="Thumb 2" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/img/property/img3.jpg"
+                                     alt="Thumb 3" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/img/property/img4.jpg"
+                                     alt="Thumb 4" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/img/property/img5.jpg"
+                                     alt="Thumb 5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                <div id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-8 mb-5">
+
+                    <div class="mb-3">
+                        <span class="badge badge-outstanding">Destacado</span>
+                        <span class="badge badge-sale">En Venta</span>
+                        <span class="ml-2 text-muted"><i class="fas fa-calendar-alt"></i> Hace 2 años</span>
+                        <span class="ml-2 text-muted"><i class="fas fa-eye"></i> 1500 visualizaciones</span>
+                    </div>
+
+                    <h1 class="font-weight-bold title-property">Casa Familiar de Lujo</h1>
+                    <p class="price">$ 160 000.00 <del class="text-muted">$ 160 000.00</del></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Lima 154, San Borja, Lima</p>
+
+                    <h5 class="section-title mt-4">Sobre la propiedad:</h5>
+                    <p>
+                        Description It is a long established fact that a reader will be distract by any websites look for ways prevent AdBlock from blocking annoying ads...
+                    </p>
+
+                    <h5 class="section-title mt-4">Detalles:</h5>
+                    <div class="details-section mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Precio:</strong> 5268.000</p>
+                                <p><strong>Área (m2):</strong> 400 m2</p>
+                                <p><strong>Dormitorios:</strong> 03</p>
+                                <p><strong>Oficinas:</strong> 01</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>ID de la propiedad:</strong> Th26157096</p>
+                                <p><strong>Área total:</strong> 1300 m2</p>
+                                <p><strong>Baños:</strong> 03</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-title">Detalles:</h5>
+                    <div class="details-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p><i class="fas fa-check check-icon"></i> Aire acondicionado</p>
+                                <p><i class="fas fa-check check-icon"></i> Microondas</p>
+                                <p><i class="fas fa-check check-icon"></i> Calefacción</p>
+                                <p><i class="fas fa-check check-icon"></i> Lavadora</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><i class="fas fa-check check-icon"></i> Lavandería</p>
+                                <p><i class="fas fa-check check-icon"></i> Ducha exterior</p>
+                                <p><i class="fas fa-check check-icon"></i> Piscina</p>
+                                <p><i class="fas fa-check check-icon"></i> Wifi</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><i class="fas fa-check check-icon"></i> Cortinas</p>
+                                <p><i class="fas fa-check check-icon"></i> Refrigerador</p>
+                                <p><i class="fas fa-check check-icon"></i> Alarma</p>
+                                <p><i class="fas fa-check check-icon"></i> Jardín</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card-agent text-center mb-4">
+                        <img src="/img/agentes/agente-inmobiliario.webp" class="agent-avatar mb-3" alt="Agente">
+                        <h5 class="font-weight-bold">Jhon Doe</h5>
+                        <p class="text-muted">Experto en departamentos</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis distinctio</p>
+                        <p class="font-weight-bold">jhondoe@proyectohogar.pe</p>
+                        <div class="mb-3">
+                            <a href="#" class="text-dark mx-1"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-dark mx-1"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-dark mx-1"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                        <button class="btn btn-custom btn-block">CONTACTAR AGENTE</button>
+                    </div>
+
+                    <div class="card-contact p-3">
+                        <h5 class="section-title mb-4">Solicita contacto</h5>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nombre completo">
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Celular">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Correo">
+                            </div>
+                            <button type="submit" class="btn btn-contact btn-block mt-5">Enviar datos de contacto</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+</body>
+
+</html>

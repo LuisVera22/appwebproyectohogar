@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head}"></head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+<title>Registro-agente</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+.requerido{
+    color: red;
+}
+  
+.form-group select,
+::picker(select) {
+  appearance: base-select;
+}
+
+.form-group option {
+  padding: .375rem .75rem;
+  &:hover {
+    background: #d5a24b;
+    color: white;
+  }
+}
+
+::picker(select){
+  border-radius: 12px;
+  margin-bottom: 5px;
+}
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.l-form {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.shape1, .shape2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.shape1 {
+    top: -7rem;
+    left: -3.5rem;
+   /* background: linear-gradient(180deg, var(--rojo-vino) 0%, rgba(196,196,196,0) 100%);*/
+}
+
+.shape2 {
+    bottom: -6rem;
+    right: -5.5rem;
+    /*background: linear-gradient(180deg, var(--rojo-vino) 0%, rgba(196,196,196,0) 100%);*/
+    transform: rotate(180deg);
+}
+
+.form {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.form__content {
+    width: 600px; 
+}
+
+
+.form__img {
+    display: none; 
+}
+
+.form__title {
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+/* Botón */
+.form__button {
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    margin-bottom: 3rem;
+    background-color: var(--rojo-vino);
+    color: #fff;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.form__button:hover {
+    box-shadow: 0px 15px 36px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .form__img {
+        display: none;
+    }
+    .form__content {
+        width: 350px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    :root {
+        --big-font-size: 2.5rem;
+        --normal-font-size: 1rem;
+    }
+
+    .form {
+        grid-template-columns: 1.5fr 1fr;
+        padding: 0 2rem;
+    }
+
+    
+
+    .shape1 {
+        width: 400px;
+        height: 400px;
+        top: -11rem;
+        left: -6.5rem;
+    }
+
+    .shape2 {
+        width: 300px;
+        height: 300px;
+        right: -6.5rem;
+    }
+
+    .form__img {
+        display: block;
+        width: 580px;
+        justify-self: center;
+        z-index: 1000;
+    }
+}
+
+   .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation ease 1s;
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+    }
+
+    @keyframes fadeInAnimation {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    /* Animación fade-in para imagen */
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-image {
+  animation: fadeInImage 0.5s ease-in-out;
+}
+
+    /*check box*/
+
+
+ .checkbox-container {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+.checkbox {
+    margin: 0; 
+}
+.label {
+    margin-left: 8px; 
+    margin-top: 10px;
+
+}
+.terminos{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+/*codigo agente oculto*/
+.oculto {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* Estilo para mostrar con animación */
+.mostrar {
+  max-height: 200px; 
+  opacity: 1;
+  transition: all 0.4s ease;
+}
+
+/*titulo de registrar*/
+ .titulo-container-agente {
+        text-align: center;
+        margin-bottom: 10px;
+        padding-top: 20px;
+    }
+
+    .titulo-container-agente h3 {
+        margin: 0;
+    }
+
+    .datos_requeridos {
+        display: block;
+        text-align: left;
+        color: red;
+        font-size: 14px;
+        padding-left: 20px;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 600px) {
+        .datos_requeridos {
+            padding-left: 10px;
+            font-size: 13px;
+        }
+    }
+
+</style>
+</head>
+<body>
+<header>
+    <!--<nav th:replace="~{layouts/main_layout :: navigation}"></nav>-->
+</header>
+
+<main class="fade-in" id="registrar-persona">
+    <div class="l-form">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+
+        <div class="form">
+            <img src="img/registrar/re_persona.png" alt=""class="form__img">
+            <div class="form__content"> 
+
+        <form method="post" action="/registrar-agente">       
+ 
+           <div class="titulo-container-agente">
+              <h3>Registra tu perfil Agente</h3>
+              <span class="datos_requeridos">Datos requeridos (*)</span>
+          </div>
+
+
+                <!-- Foto de perfil -->
+            <div class="mb-4 text-center position-relative">
+              <div style="position: relative; display: inline-block;">
+                <img src="/img/agente.jpg" alt="Foto de perfil" id="fotoPerfil"
+                  class="rounded-circle border shadow" style="width: 120px; height: 120px; object-fit: cover;">
+                <label for="inputFoto"
+                  class="bg-primary rounded-circle shadow d-flex justify-content-center align-items-center"
+                  style="position: absolute; bottom: 0; right: 0; width: 35px; height: 35px; cursor: pointer;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg>
+                </label>
+                <input type="file" id="inputFoto" name="foto" accept="image/*" class="d-none">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="nombres">Nombres  <span class="requerido">(*)</span></label>
+                <input class="form-control" type="text" name="nombres" id="nombres" placeholder="Ingrese sus nombres" required style="margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos <span class="requerido">(*)</span></label>
+                <input class="form-control" type="text" name="apellidos" id="apellidos" placeholder="Ingrese sus apellidos" required style="margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono <span class="requerido">(*)</span></label>
+                <input class="form-control" type="tel" name="telefono" id="telefono" placeholder="Ingrese su teléfono" required style="margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group">
+                <label for="tipoDocumento">Tipo de documento  <span class="requerido">(*)</span></label>
+                <select class="form-control" name="tipoDocumento" id="tipoDocumento" required style="margin-bottom: 15px;">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="dni">DNI</option>
+                    <option value="ce">Carné de Extranjería</option>
+                    <option value="pasaporte">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numeroDocumento">Número de documento <span class="requerido">(*)</span></label>
+                <input class="form-control" type="text" name="numeroDocumento" id="numeroDocumento" placeholder="Ingrese su número de documento" required style="margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico <span class="requerido">(*)</span></label>
+                <input class="form-control" type="email" name="email" id="email" placeholder="Ingrese su correo" required style="margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña <span class="requerido">(*)</span></label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese su contraseña" required minlength="6" maxlength="20" style="margin-bottom: 35px;" />
+            </div>
+
+            
+              <div class="form-group oculto" id="codigoAgenteGroup" style="margin-top: -20px; margin-bottom: 30px;">
+                <label for="codigoAgente">Código de agente <span class="requerido">(*)</span></label>
+                <input class="form-control" type="text" name="codigoAgente" id="codigoAgente" placeholder="Ingrese su código de agente" />
+                </div>
+
+
+           <div>
+                <input type="checkbox" id="intranetCheck" />
+                <label style="margin-left: 10px;">
+                    <a href="intranet">ACCESO A LA INTRANET</a>
+                </label>
+            </div>
+
+                      
+              <div style="margin-top: 12px;" class="checkbox-container">
+                          <input type="checkbox" id="terms" required>
+                          <label class="terminos" for="terms">
+                              <span><a href="#"> ACEPTO LOS TERMINOS Y CONDICIONES</a></span> 
+                              Y LA 
+                              <span><a href="#">POLITICA DE PRIVACIDAD</a></span>
+                          </label>
+                      </div>
+                      <div class="checkbox-container">
+                          <input type="checkbox" id="info-usage" required>
+                          <label class="terminos" for="info-usage">
+                              AUTORIZO EL USO DE MI INFORMACIÓN PARA FINES ADICIONALES
+                          </label>
+                      </div>
+                    
+
+            <button type="submit" class="form__button" style="width: 100%; padding: 12px; background-color: #E2BB7D; border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer;">
+                Registrarme
+            </button>
+
+            
+        </form>
+
+                </div> 
+
+        </div>
+    </div>
+</main>
+<script>
+  document.getElementById('inputFoto').addEventListener('change', function (event) {
+    const archivo = event.target.files[0];
+    const vistaPrevia = document.getElementById('fotoPerfil');
+
+    if (archivo && archivo.type.startsWith('image/')) {
+      const lector = new FileReader();
+      lector.onload = function (e) {
+        vistaPrevia.classList.remove('fade-in-image'); 
+        void vistaPrevia.offsetWidth; 
+        vistaPrevia.src = e.target.result;
+        vistaPrevia.classList.add('fade-in-image');
+      };
+      lector.readAsDataURL(archivo);
+    }
+  });
+</script>
+<script>
+  const intranetCheck = document.getElementById('intranetCheck');
+  const codigoAgenteGroup = document.getElementById('codigoAgenteGroup');
+  const codigoAgenteInput = document.getElementById('codigoAgente');
+
+  intranetCheck.addEventListener('change', function () {
+    if (this.checked) {
+      codigoAgenteGroup.classList.remove('oculto');
+      codigoAgenteGroup.classList.add('mostrar');
+      codigoAgenteInput.setAttribute('required', 'required');
+    } else {
+      codigoAgenteGroup.classList.remove('mostrar');
+      codigoAgenteGroup.classList.add('oculto');
+      codigoAgenteInput.removeAttribute('required');
+      codigoAgenteInput.value = '';
+    }
+  });
+</script>
+
+
+</body>
+</html>

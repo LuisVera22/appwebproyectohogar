@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Comprar o Alquilar</title>
+</head>
+
+<body>
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="alquiler_venta">
+        <div class="parallax">
+            <div class="parallax-cuerpo">
+                <div id="titulo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-white">
+                                <h1>Alquilar o comprar un inmueble</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <form class="formulario" id="frmPropiedades" method="post">
+                <section class="mb-5">
+                    <h3>Datos de Contacto</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="textNombres">Nombres:</label>
+                                <input class="form-control" type="text" name="textNombres" id="textNombres" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="textApellidos">Apellidos:</label>
+                                <input class="form-control" type="text" name="textApellidos" id="textApellidos"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="textTelefono">Teléfono a contactar:</label>
+                                <input class="form-control" type="text" name="textTelefono" id="textTelefono" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="textNumero">Otro Número de Contacto:</label>
+                                <input class="form-control" type="text" name="textNumero" id="textNumero" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="textCorreo">Correo:</label>
+                                <input class="form-control" type="email" name="textCorreo" id="textCorreo" required>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <h3>Datos Básicos del Inmueble</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectTipoPropiedad">Tipo de Propiedad:</label>
+                                <select class="form-control" name="selectTipoPropiedad" id="selectTipoPropiedad"
+                                    required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectTipoOperacion">Tipo de Operación:</label>
+                                <select class="form-control" name="selectTipoOperacion" id="selectTipoOperacion"
+                                    required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectAmbientes">Número de ambientes:</label>
+                                <select class="form-control" name="selectAmbientes" id="selectAmbientes" required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectBanos">Número de baños:</label>
+                                <select class="form-control" name="selectBanos" id="selectBanos" required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textTerrenoMin">Area de terreno mínima (mt2):</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textTerrenoMin" id="textTerrenoMin" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textTerrenoMax">Area de terreno máxima(mt2):</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textTerrenoMax" id="textTerrenoMax" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textConstruidaMin">Area construida mínima (mt2):</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textConstruidaMin" id="textConstruidaMin" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textConstruidaMax">Area construida máxima (mt2):</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textConstruidaMax" id="textConstruidaMax" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textPrecioMin">Precio mínimo:</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textPrecioMin" id="textPrecioMin" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="textPrecioMax">Precio máximo :</label>
+                                <input class="form-control number_pro" type="number" min="1" step="any"
+                                    name="textPrecioMax" id="textPrecioMax" required>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <h3>Ubicación del Inmueble</h3>
+                    <hr>
+                    <p>Indique los distritos donde quiere que busquemos su propiedad.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectDepartamento">Departamento:</label>
+                                <select class="form-control" name="selectDepartamento" id="selectDepartamento" required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectProvincia">Provincia:</label>
+                                <select class="form-control" name="selectProvincia" id="selectProvincia" required>
+                                    <option value="">Elije una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectDistrito">Distrito:</label>
+                                <select class="form-control" name="selectDistrito" id="selectDistrito" multiple
+                                    required>
+                                    <option value="">Seleccione Distrito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Otras Características (opcional)</p>
+                            <div class="row justify-content-center">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="checkGarajes"
+                                        name="checkGarajes" value="Garajes">
+                                    <label class="form-check-label" for="checkGarajes">Garajes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="checkAscensor"
+                                        name="checkAscensor" value="Ascensor">
+                                    <label class="form-check-label" for="checkAscensor">Ascensor</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="checkPiscina"
+                                        name="checkPiscina" value="Piscina">
+                                    <label class="form-check-label" for="checkPiscina">Piscina</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="checkJardin" name="checkJardin"
+                                        value="Jardín">
+                                    <label class="form-check-label" for="checkJardin">Jardín</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="checkAmoblado"
+                                        name="checkAmoblado" value="Amoblado">
+                                    <label class="form-check-label" for="checkAmoblado">Amoblado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <h3>Otros datos / Comentarios / Inquietudes</h3>
+                    <hr>
+                    <p>Ingrese aquí cualquier otro dato, comentario o inquietud que no haya sido previamente cubierto en
+                        este formulario</p>
+                    <div class="form-group">
+                        <textarea class="form-control" name="textComentarios" id="textComentarios" rows="5"
+                            required></textarea>
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <h3>Acuerdo de Autorización</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="autorizacion" id="checkAutorizacion"
+                            name="checkAutorizacion" required>
+                        <label class="form-check-label" for="checkAutorizacion">
+                            Mediante la presente, autorizo a compartir mis datos con el Grupo
+                            IBMobiliaria y a que me envíen información con arreglo a la Ley 28493 y su Reglamento D.S.
+                            031-2005
+                            MTC.
+                        </label>
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <hr>
+                    <h1>catcha</h1>
+                    <hr>
+                </section>
+                <div class="my-3">
+                    <button type="submit" class="btn btn-primary btn-lg mb-4" id="EnviarPro"
+                        style="border:none;align-items: center;">
+                        <span class="spinner-border spinner-border-sm" id="spinnerC" role="status" aria-hidden="true"
+                            style="width: 1.4rem;height: 1.4rem;margin-right: 8px;display: none;"></span>
+                        Enviar Datos<i class="fa fa-arrow-circle-right ml-3"></i></button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+</body>
+
+</html>

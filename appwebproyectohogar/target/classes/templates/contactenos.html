@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}"></head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Contáctanos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .parallax {
+        background-image: url(../img/propiedades.png);
+    }
+
+    .mapa-contacto {
+        height: 50vh;
+        width: 100%;
+        border: 0;
+    }
+
+    /* ===== SECCIÓN DE CONTACTO ===== */
+    .seccion-contacto {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 70px;
+        padding: 40px 20px;
+        max-width: 1300px;
+        margin: 0 auto;
+        margin-top: -50px;
+    }
+
+    /* COLUMNA: INFORMACIÓN DE CONTACTO */
+    .columna-mapa {
+        flex: 1.2;
+        min-width: 250px;
+        margin-top: 15px;
+        height: 50vh;
+    }
+
+    .columna-mapa iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* COLUMNA: FORMULARIO DE CONTACTO */
+    .columna-formulario {
+        flex: 2;
+        min-width: 300px;
+    }
+
+    /* ICONOS DE REDES */
+    .iconos-contacto {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 40px 0;
+        font-size: 18px;
+        flex-wrap: wrap;
+    }
+
+    .icono-social {
+        font-size: 40px;
+        transition: color 0.3s ease;
+        color: black;
+    }
+
+    .icono-social.facebook:hover {
+        color: #1877F2;
+    }
+
+    .icono-social.youtube:hover {
+        color: #FF0000;
+    }
+
+    .icono-social.instagram:hover {
+        color: #E1306C;
+    }
+
+    .icono-social:hover {
+        transform: scale(1.1);
+    }
+
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .seccion-contacto {
+            flex-direction: column;
+        }
+
+        .columna-mapa {
+            height: 700vh;
+            /* Reducir el tamaño del mapa en pantallas pequeñas */
+        }
+
+        .titulo-contacto {
+            margin-left: 0;
+            /* Elimina el margen o ajusta como desees */
+            text-align: center;
+            /* Centra el texto */
+        }
+
+        #titulo-form-contactenos {
+            text-align: center;
+            /* Centra el texto */
+            margin-left: 0;
+            /* Elimina el margen izquierdo */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .columna-mapa {
+            margin-top: 0;
+        }
+
+
+    }
+</style>
+</head>
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main>
+        <!-- PARRALLAX: BANNER SUPERIOR -->
+        <div class="parallax">
+            <div class="parallax-cuerpo">
+                <div id="titulo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-white">
+                                <h1>¿Quienes Somos?</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE CONTACTO -->
+        <section class="seccion-contacto">
+            <!-- Columna izquierda: Mapa -->
+            <div class="columna-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62398.740897928685!2d-77.0528013419309!3d-12.185757729822413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7975e71c1df%3A0xcc3f8f6ccc3ceab2!2sMalec%C3%B3n%20de%20Chorrillos!5e0!3m2!1ses-419!2spe!4v1744257956565!5m2!1ses-419!2spe"
+                    class="mapa-contacto" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Columna derecha: Formulario -->
+            <form action="#" method="post" class="columna-formulario">
+                <h3 id="titulo-form-contactenos">Datos de Contacto</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="tipoConsulta">Tipo de Consulta:</label>
+                    <select class="form-control" name="tipoConsulta" id="tipoConsulta" required>
+                        <option value="">Elige una opción</option>
+                        <option value="Consulta">Consulta</option>
+                        <option value="SobrePropiedad">Sobre tu propiedad</option>
+                        <option value="OtroMotivo">Otro motivo</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input class="form-control" type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="correo">Correo:</label>
+                        <input class="form-control" type="email" id="correo" name="correo" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input class="form-control" type="text" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg mt-3" style="width: 100%; border: none;">
+                    Enviar <i class="fa fa-arrow-circle-right ml-3"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- REDES SOCIALES -->
+        <section class="text-center">
+            <h3>Síguenos</h3>
+            <div class="iconos-contacto">
+                <div><i class="fa fa-phone"></i> +51 999 999 999</div>
+                <div><i class="fa fa-envelope"></i> Inmobiliaria@gmail.com</div>
+                <div><i class="fa fa-map-marker"></i> RXMF+G23, Cto. de Playas, Lima 15064</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+</body>
+
+</html>

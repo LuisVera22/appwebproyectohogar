@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layouts/user_layout :: fragHead}"></head>
+
+    <body>
+        
+        <nav th:replace="~{layouts/user_layout :: fragNavegacion}"></nav>
+
+        <!-- CONTENIDO -->
+        <div class="container">
+            <!-- Slider horizontal -->
+            <div class="sidebar">
+                <button onclick="showContent('perfil')" class="active">Perfil <span class="arrow">›</span></button>
+                <button onclick="showContent('historial')">Historial <span class="arrow">›</span></button>
+                <button onclick="showContent('favoritos')">Favoritos <span class="arrow">›</span></button>
+                <!-- <button onclick="showContent('descartados')">Descartados <span class="arrow">›</span></button> -->
+                <!-- <button onclick="showContent('alertas')">Búsquedas y alertas <span class="arrow">›</span></button> -->
+            </div>
+            <!-- Contenido Principal-Dinamico -->
+            <div class="main-content fade-in" id="mainContent">
+                <!-- Imagen de perfil -->
+                <div class="d-flex justify-content-center mb-5"> 
+                    <img th:src="@{/img/agente.jpg}" alt="Foto de perfil"
+                    class="rounded-circle border border-3 border-white" style="width: 150px; height: 150px; object-fit: cover;">
+                </div>
+
+                <h4 class="pb-3">Información Personal</h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item">Nombre: Jose Carlos Espinoza Quispe</li>
+                    <li class="list-group-item">Género: Masculino</li>
+                    <li class="list-group-item">Correo: juan.perez@example.com</li>
+                    <li class="list-group-item">Teléfono: +51 987654321</li>
+                    <li class="list-group-item">Ubicación: Lima, Perú</li>
+                </ul>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#editarModal">Editar Información</button>
+            </div>
+
+            <!-- Modal de Edición -->
+            <div class="modal fade " id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content p-4" style="border-radius: 1rem;">
+                <form id="formEditarUsuario">
+                    <div class="modal-header">
+                        <h5 class="modal-title pt-4" id="editarModalLabel" style="font-weight: bold;">Editar Información Personal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                        <!-- Imagen de perfil -->
+                        <div class="d-flex justify-content-center">
+                        <div class="position-relative d-inline-block mb-2"> 
+                            <img th:src="@{/img/agente.jpg}" alt="Foto de perfil" id="fotoPerfil"
+                            class="rounded-circle border border-3 border-white" style="width: 150px; height: 150px; object-fit: cover;">
+                            <!-- Botón con ícono de lápiz posicionado abajo a la derecha -->
+                            <label for="inputFoto"
+                                    class="position-absolute bg-primary rounded-circle shadow d-flex justify-content-center align-items-center"
+                                    style="bottom: 0; right: 0; width: 40px; height: 40px; cursor: pointer; transform: translate(25%, 25%);">
+                                <!-- Ícono de lápiz -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                </svg>
+                            </label>
+                            <!-- Input de tipo archivo oculto -->
+                            <input type="file" id="inputFoto" name="foto" accept="image/*" class="d-none">
+                        </div>
+                        </div>
+                        <!-- Campos de edición -->
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" class="form-control" id="nombre" value="Jose Carlos Espinoza Quispe">
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Género</label>
+                            <select class="form-control" id="genero">
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" value="juan.perez@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" value="+51 987654321">
+                        </div>
+                        <div class="form-group">
+                            <label for="ubicacion">Ubicación</label>
+                            <input type="text" class="form-control" id="ubicacion" value="Lima, Perú">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- <footer th:replace="~{layouts/user_layout :: fragFooter}"></footer> -->    
+        <div th:replace="~{layouts/user_layout :: fragScripts}"></div>
+    </body>
+</html>

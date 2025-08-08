@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Nuestos Agentes</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+    .card{
+        border-radius: 1rem;
+    }
+    .card-img-top{
+        border-radius: 1rem;
+    }
+    .modal-content {
+        border-radius: 3rem !important;
+        padding: 2rem;
+    }
+
+    .modal-header button i {
+        font-size: 30px;
+        color: #E2BB7D;
+    }
+
+    .btn-primary{
+        background-color: var(--rojo-vino);
+        border-color:  var(--rojo-vino);
+        box-shadow: 0 0 0 .2rem var(--rojo-vino);
+    }
+
+</style>
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="nuestros_agentes">
+        <div class="parallax">
+            <div class="parallax-cuerpo">
+                <div id="titulo">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-white">
+                                <h1>Nuestros Agentes</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h1>Agentes Inmobiliarios</h1>
+                </div>
+                <div class="col-12">
+                    <p>Conoce a nuestros profesionales listos para ayudarte a encontrar la
+                        mejor propiedad.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 mb-4 ">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4 border-radius">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-header">
+                            <img th:src="@{/img/agente.jpg}" class="card-img-top" alt="Agente 1">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Juan Pérez</h5>
+                            <p class="card-text">Código: AG001</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgente1">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modales de Agentes -->
+    <div class="modal fade" id="modalAgente1" tabindex="-1" aria-labelledby="modalAgente1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content rounded-5">
+                <!-- Titulado del Modal -->
+                <div class="modal-header">
+                    <!-- Título opcional, puedes quitar el <h5> si no lo usas -->
+                    <h5 class="modal-title" id="modalAgente1Label">Detalle del Agente</h5>
+                    <button class="btn text-danger fs-4" data-dismiss="modal" style="border: none; background: none;">
+                        <i class="bi bi-x-circle-fill"></i>
+                    </button>
+                </div>
+                <!-- Cuerpo del Moadl -->
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <p><i class="bi bi-briefcase-fill me-2"></i><strong> Experiencia:</strong> 5 años en el
+                                sector inmobiliario.</p>
+                            <p><i class="bi bi-house-door-fill me-2"></i><strong> Especialidad:</strong> Venta de
+                                departamentos y casas familiares.</p>
+                            <p><i class="bi bi-telephone-fill me-2"></i><strong> Teléfono:</strong> +51 987 654 321</p>
+                            <p><i class="bi bi-envelope-fill me-2"></i><strong> Email:</strong>
+                                juan.perez@inmobiliaria.com</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <img th:src="@{/img/agente.jpg}" class="img-fluid rounded-circle"
+                                style="width: 150px; height: 150px; object-fit: cover;" alt="Juan Pérez">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+    
+</body>
+
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head}">
+    <title>ProyectoHogar - Nuestros Inmuebles</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Listado de propiedades en ProyectoHogar - Encuentra inmuebles en venta y alquiler">
+
+    
+</head>
+
+<style>
+
+    .btn-en-plano {
+  background-color: #f7c65e !important;  
+  color: black !important;
+  border: 1px solid #d6a84d;
+}
+
+   
+    .texto-encontrados {
+        width: 80%;
+        margin: 100px auto 0 auto;
+    }
+
+    h1 {
+        color: var(--rojo-vino);
+        font-size: 50px;
+        margin-bottom: 20px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    .texto-intro {
+        color: var(--negro--);
+        max-width: 1200px;
+        word-wrap: break-word;
+        color: black;
+    }
+    .card-text{
+        color: #000;
+    }
+    .resultado-inmuebles{
+        color: #000;
+    }
+
+    /* Filtros */
+    .filtros-busqueda {
+        width: 80%;
+        margin: 0 auto 60px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .btn-filtros {
+        background-color: var(--mostaza-solar);
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .acciones-busqueda {
+        display: flex;
+        align-items: center;
+        gap: 200px;
+    }
+
+    /* Grupo del buscador */
+    .search-group {
+        display: flex;
+        border-radius: 50px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+        background-color: white;
+    }
+
+   .search-input {
+    border: none;
+    padding: 16px 28px;  /* 🔼 más padding */
+    width: 430px;        /* 🔼 más ancho */
+    border-radius: 50px 0 0 50px;
+    outline: none;
+    font-size: 18px;     /* 🔼 fuente más grande */
+}
+
+
+    .btn-search {
+        background-color: var(--rojo-vino);
+        border: none;
+        padding: 0 24px;
+        border-radius: 0 50px 50px 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-size: 18px;
+    }
+
+    /* Selector de orden */
+    .ordenar-group {
+        background-color: white;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        border-radius: 6px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        gap: 8px;
+    }
+
+    .ordenar-group label {
+        font-weight: 500;
+        color: #555;
+    }
+
+    .ordenar-group select {
+        padding: 6px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .texto-encontrados {
+            margin: 60px auto 0 auto;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 40px;
+            white-space: normal;
+        }
+
+        .filtros-busqueda {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .acciones-busqueda {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+        }
+
+        .ordenar-group {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+    
+    /*cards*/
+  
+    .description{
+        color: var(--rojo-vino); 
+    }
+       
+        .price {
+            font-size: 22px;
+            color: #000;
+            font-weight: bold;
+            
+        }
+       
+       
+        .contact-button {
+            background-color: var(--rojo-vino);
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-button:hover {
+            background-color: var(--rojo-vino);
+        }
+        .caracter-inmuebles{
+            color: #8c8887;
+            font-weight: lighter;
+        }
+        .properties{
+            color: var(--rojo-vino);
+        }
+        .fa-map-marker-alt{
+        color: var(--rojo-vino);
+
+        }
+        .fa-paper-plane{
+            margin-right:20px;
+        }
+
+        
+        /*filtross boton*/
+        
+        
+/* Overlay oscuro al abrir sidebar */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+/* Sidebar para filtros */
+.property-sidebar {
+    position: fixed;
+    right: -350px;
+    top: 100px;
+    height: 85%;
+    background-color: #ffffff; /* Fondo blanco sólido */
+    z-index: 999;
+    box-shadow: -2px 0 15px rgba(213, 162, 75, 0.4);
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 12px;
+    opacity: 0;
+    transition: right 0.5s ease, opacity 0.5s ease;
+}
+
+.property-sidebar.show {
+    right: 35px;
+    opacity: 1;
+}
+
+/* Cabecera de sección con botón de cerrar */
+.property-sidebar .header-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #6B4C17;
+}
+
+/* Títulos de cada sección */
+.property-sidebar .section-title {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #2E2E2E;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.property-sidebar .section-title i {
+    margin-right: 8px;
+    color: #2E2E2E;
+}
+
+/* Grupo de botones estilo chip */
+.btn-group-custom {
+    gap: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-custom {
+    background-color: white;
+    border: 1.5px solid white;
+    color: #D5A24B;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-width: 70px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(213, 162, 75, 0.2);
+}
+
+.btn-custom:hover,
+.btn-custom.active {
+    background-color: #D5A24B;
+    color: white;
+    border-color: #D5A24B;
+    box-shadow: 0 4px 10px rgba(213, 162, 75, 0.3);
+}
+
+/* Rango de inputs (Precio / Área) */
+.range-inputs {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.range-inputs input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1.5px solid #D5A24B;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #fffefc;
+    color: #6B4C17;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.range-inputs input:focus {
+    outline: none;
+    border-color: #b8862c;
+    box-shadow: 0 0 4px #D5A24B88;
+}
+
+/* Íconos dentro de inputs o junto a ellos */
+.range-inputs i {
+    color: #6B4C17; /* Marrón oscuro suave */
+    font-size: 1rem;
+    margin-right: 4px;
+}
+
+/* Scrollbar personalizado */
+.property-sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.property-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(213, 162, 75, 0.4);
+    border-radius: 4px;
+}
+
+
+/* Pie de tarjeta con botón oculto */
+.card-footer {
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    padding: 0;
+}
+
+.btn-ver-mas {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    transition: left 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-card:hover .btn-ver-mas {
+    left: 0;
+}
+
+/* Íconos */
+.fa-eye {
+    margin-right: 10px;
+}
+
+.fa-star {
+    margin-right: 10px;
+}
+
+.property-badge {
+    margin-left: 10px;
+}
+
+.crown-icon {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    animation: float 2s ease-in-out infinite;
+    z-index: 10;
+    color: gold;
+}
+
+</style>
+
+
+<body>
+
+    <div th:replace="~{layouts/main_layout :: navigation}"></div>
+
+    <main id="nuestos_inmuebles">
+        <div class="texto-encontrados">
+            <h1>Se han encontrado <span class="resultado-inmuebles">512</span> resultados</h1>
+            <p class="texto-intro">
+                Descubre propiedades increíbles que se adaptan a tu estilo de vida. Usa los filtros para encontrar justo lo que estás buscando. ¡Tu nuevo hogar está a solo unos clics!
+            </p>
+        </div>
+        
+       <div class="filtros-busqueda">
+            <button class="btn-filtros" id="moreFilters">
+                <i class="fas fa-filter"></i> Más Filtros
+            </button>
+
+            <div class="acciones-busqueda">
+                <div class="search-group">
+                    <input type="text" placeholder="Busca por ubicación" class="search-input" />
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="ordenar-group">
+                    <label for="ordenar-select">Ordenar por:</label>
+                    <select id="ordenar-select">
+                        <option>Por defecto</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+       
+    <!-- filtros -->
+    
+      <div id="overlay" class="hidden"></div> <!-- Div de fondo opaco -->
+
+               <aside class="property-sidebar hidden" id="filterSidebar" style="width: 450px;">
+                                   <div class="container-box">
+                                       <div class="header-btn" >
+                                          <div class="d-flex align-items-center" >
+                                              <i class="fas fa-map-marker-alt"></i>
+                                            <span class="ml-2">Características principales</span>
+                                          </div>
+                                          <i class="fas fa-chevron-up"></i>
+                                        </div>
+                                        <div class="panel">
+                                          <!-- Habitaciones -->
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-bed" style="color :black"></i>
+                                              Habitaciones
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">1</div>
+                                              <div class="btn btn-custom">2</div>
+                                              <div class="btn btn-custom">3</div>
+                                              <div class="btn btn-custom">4</div>
+                                              <div class="btn btn-custom">5+</div>
+                                            </div>
+                                          </div>
+                                          <!-- Baños -->
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-bath "style="color :black"></i>
+                                              Baños
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">1</div>
+                                              <div class="btn btn-custom">2</div>
+                                              <div class="btn btn-custom">3</div>
+                                              <div class="btn btn-custom">4</div>
+                                              <div class="btn btn-custom">5+</div>
+                                            </div>
+                                          </div>
+                                          <!-- Parqueaderos -->
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-car" style="color :black"></i>
+                                              Estacionamiento
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">1</div>
+                                              <div class="btn btn-custom">2</div>
+                                              <div class="btn btn-custom">3</div>
+                                              <div class="btn btn-custom">4</div>
+                                              <div class="btn btn-custom">5+</div>
+                                            </div>
+                                          </div>
+                                          <!-- Estrato 
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-building"style="color :black"></i>
+                                              Estrato
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">1</div>
+                                              <div class="btn btn-custom">2</div>
+                                              <div class="btn btn-custom">3</div>
+                                              <div class="btn btn-custom">4</div>
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">5</div>
+                                              <div class="btn btn-custom">6</div>
+                                              <div class="btn btn-custom">Comercial</div>
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">Rural</div>
+                                            </div>
+                                          </div>-->
+
+                                          
+                                          <!-- Precio 
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-dollar-sign"style="color :black"></i>
+                                              Precio (COP)
+                                            </div>
+                                            <div class="range-inputs">
+                                              <input type="number" placeholder="Mínimo" min="0" />
+                                              <input type="number" placeholder="Máximo" min="0" />
+                                            </div>
+                                          </div>-->
+                                          <!-- Área -->
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-ruler-combined"style="color :black"></i>
+                                              Área (m²)
+                                            </div>
+                                            <div class="range-inputs">
+                                              <input type="number" placeholder="Mínimo" min="0" />
+                                              <input type="number" placeholder="Máximo" min="0" />
+                                            </div>
+                                          </div>
+                                           
+                                          <!-- Precio -->
+
+                                      
+                                            <div class="mb-3">
+                                            <div class="section-title">
+                                                <i class="fas fa-dollar-sign" style="color: black"></i>
+                                                Precio
+                                            </div>
+
+                                            <div style="margin: 8px 0 12px 0;">
+                                                <label style="margin-right: 15px;">
+                                                <input type="radio" name="moneda" value="Soles" checked />
+                                                Soles (S/)
+                                                </label>
+
+                                                <label>
+                                                <input type="radio" name="moneda" value="USD" />
+                                                USD ($)
+                                                </label>
+                                            </div>
+
+                                            <div class="range-inputs">
+                                                <input type="number" placeholder="Desde" min="0" name="precioMinimo" />
+                                                <input type="number" placeholder="Hasta" min="0" name="precioMaximo" />
+                                            </div>
+                                            </div>
+
+
+                                          
+
+                                          
+                                          <!-- Tipo de inmueble -->
+                                          <div class="mb-3">
+                                            <div class="section-title">
+                                              <i class="fas fa-home"style="color :black"></i>
+                                              Tipo de inmueble
+                                            </div>
+                                            <div class="btn-group-custom d-flex flex-wrap">
+                                              <div class="btn btn-custom">Casa</div>
+                                              <div class="btn btn-custom">Departamento</div>
+                                              <div class="btn btn-custom">Terreno</div>
+                                              <div class="btn btn-custom">Local Comercial</div>
+                                              <div class="btn btn-custom">Oficina</div>
+                                            </div>
+                                          </div>
+
+                                     <!-- Antigüedad -->
+                                            <div class="mb-3">
+                                            <div class="section-title">
+                                                <i class="fas fa-info-circle" style="color: black;"></i>
+                                                Antigüedad
+                                            </div>
+
+                                            <div class="btn-group-custom d-flex flex-wrap align-items-center gap-2">
+
+                                                <!-- Año de construcción -->
+                                                <input type="number" 
+                                                    name="anioConstruccion" 
+                                                    placeholder="Año construcción" 
+                                                    min="1900" 
+                                                    max="2025" 
+                                                    class="form-control" 
+                                                    style="width: 250px; margin-right: 10px;" />
+
+                                                <!-- Botones de estado -->
+                                                <div class="btn btn-custom btn-en-plano">
+                                                <i class="fas fa-map"></i> En plano
+                                                </div>
+                                                <div class="btn btn-custom">En construcción</div>
+                                                <div class="btn btn-custom">A estrenar</div>
+                                                <div class="btn btn-custom">Usados</div>
+                                            </div>
+                                            </div>
+
+
+                                            <!-- Piso -->
+                                                <div class="mb-3">
+                                                <div class="section-title">
+                                                    <i class="fas fa-building" style="color: black;"></i>
+                                                    Piso
+                                                </div>
+
+                                                <div class="btn-group-custom d-flex flex-wrap gap-2">
+                                                    <div class="btn btn-custom">1</div>
+                                                    <div class="btn btn-custom">2</div>
+                                                    <div class="btn btn-custom">3</div>
+                                                    <div class="btn btn-custom">4</div>
+                                                    <div class="btn btn-custom">5</div>
+                                                    <div class="btn btn-custom">6</div>
+                                                    <div class="btn btn-custom">7</div>
+                                                    <div class="btn btn-custom">8</div>
+                                                    <div class="btn btn-custom">9</div>
+                                                    <div class="btn btn-custom">10+</div>
+                                                </div>
+                                                </div>
+
+
+
+
+
+
+                                          <!-- Adicional -->
+<div class="mb-3">
+  <div class="section-title">
+    <i class="fas fa-info-circle" style="color: black;"></i>
+    Qué debe incluir
+  </div>
+
+  <div class="btn-group-custom d-flex flex-wrap gap-2">
+
+    <!-- Primera fila: ubicación y vistas -->
+    <div class="btn btn-custom">Frente al mar</div>
+    <div class="btn btn-custom">Frente a parque</div>
+    <div class="btn btn-custom">Cerca de malecones</div>
+    <div class="btn btn-custom">Vista interior</div>
+    <div class="btn btn-custom">Vista exterior</div>
+
+    <!-- Segunda fila: tipo de departamento -->
+    <div class="btn btn-custom">Dúplex</div>
+    <div class="btn btn-custom">Triplex</div>
+    <div class="btn btn-custom">Flat</div>
+
+    <!-- Tercera fila: ubicación/comodidades -->
+    <div class="btn btn-custom">Cerca centros comerciales</div>
+    <div class="btn btn-custom">Cerca de colegios</div>
+    <div class="btn btn-custom">Ascensor</div>
+    <div class="btn btn-custom">Balcón / Terraza</div>
+    <div class="btn btn-custom">Lavandería</div>
+    <div class="btn btn-custom">Portería / Vigilancia</div>
+
+    <!-- Cuarta fila: extras -->
+    <div class="btn btn-custom">Acepta mascotas</div>
+    <div class="btn btn-custom">Parrilla</div>
+    <div class="btn btn-custom">Piscina</div>
+    <div class="btn btn-custom">Área social</div>
+
+  </div>
+</div>
+
+
+
+
+                                        </div>
+                                      </div>
+                                </aside>
+                            </div>
+             
+    
+
+    
+    
+     <div class="contenedor-cartas mb-5">
+                 <div class="row justify-content-center" id="propertyCards">
+                     
+                                    <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                     
+                                     <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                     
+                     
+                     
+                                        <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                     
+                                  <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                      <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                      <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                      <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+                      <div class="col-lg-3">
+                                        <div class="card mb-4 shadow bg-white rounded property-card">
+                                            <div class="position-relative property-image">
+                                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                                    alt="Local comercial" class="card-img-top">
+                                                <span class="property-destacado position-absolute">Destacado</span>
+                                                <span class="property-venta position-absolute">En venta</span>
+
+                                            </div>
+                                            <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> AV. Malecon Miguel Checa,
+
+                                                <p class="price">$ 160 000.00</p>
+                                                <p class="description">Casa Familiar de Lujo</p>
+                                                <p class="properties"><i class="fas fa-bed"></i> <span class="caracter-inmuebles">3 Dorm. | </span> <i class="fas fa-bath"></i><span class="caracter-inmuebles">2 Baños | </span><i class="fas fa-building"></i> <span class="caracter-inmuebles">120 m² </span></p>
+                                               
+                                                <button class="contact-button"> <i class="fas fa-paper-plane"></i>CONTACTAR AGENTE</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                     
+
+                     
+                                    
+                 </div>
+         
+         
+         
+         
+         
+                                    <div class="col-12 my-3" >
+                                           <div class="pagination">
+                                               <a href="#">&laquo;</a> <!-- Enlace a la página anterior -->
+                                               <a href="/blog" class="active">1</a>
+                                               <a href="/blog2">2</a>
+                                               <a href="#">3</a>
+                                               <a href="#">4</a>
+                                               <a href="#">5</a>
+                                               <a href="/blog2">&raquo;</a> <!-- Enlace a la página siguiente -->
+                                           </div>
+                                       </div>   
+     </div>
+    
+    
+      
+            
+    
+
+
+    </main>
+
+    <footer>
+        <div th:replace="~{layouts/main_layout :: footer}"></div>
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+  document.getElementById("moreFilters").addEventListener("click", function() {
+    const sidebar = document.getElementById("filterSidebar");
+    const overlay = document.getElementById("overlay");
+    
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+});
+
+document.getElementById("overlay").addEventListener("click", function() {
+    const sidebar = document.getElementById("filterSidebar");
+    const overlay = document.getElementById("overlay");
+    
+    sidebar.classList.remove("show");
+    overlay.classList.remove("show");
+});
+
+</script>
+</body>
+</html>

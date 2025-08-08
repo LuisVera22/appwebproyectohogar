@@ -1,0 +1,223 @@
+
+#sidebar {
+    /* height: 100%; */
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    border-right: 1px solid #ccc;
+}
+
+#map {
+    height: 400px;
+    width: 600px;
+}
+
+.contenedor-mapa{
+    height: 400px;
+    width: 600px;
+}
+
+.form-section {
+    background-color: #f5faff;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.leaflet-container {
+    border-radius: 10px;
+}
+
+
+.property {
+    height: 100%;
+    padding: 20px;
+}
+/* Cabecera de sección con botón de cerrar */
+.property .header-btn {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #6B4C17;
+}
+
+.property .panel {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px ;
+}
+/* Títulos de cada sección */
+.property .section-title {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #2E2E2E;
+    margin-bottom: 10px;
+    /* display: flex;
+    align-items: center; */
+}
+
+.property .section-title i {
+    margin-right: 8px;
+    color: #2E2E2E;
+}
+
+/* Grupo de botones estilo chip */
+.btn-group-custom {
+    gap: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-custom {
+    background-color: white;
+    border: 1.5px solid white;
+    color: #D5A24B;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-width: 70px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(213, 162, 75, 0.5);
+}
+
+.btn-custom:hover,
+.btn-custom.active {
+    background-color: #D5A24B;
+    color: white;
+    border-color: #D5A24B;
+    box-shadow: 0 4px 10px rgba(213, 162, 75, 0.3);
+}
+
+/* Rango de inputs (Precio / Área) */
+.range-inputs {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.range-inputs input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1.5px solid #D5A24B;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #fffefc;
+    color: #6B4C17;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    max-width: 200px;
+}
+
+.range-inputs input:focus {
+    outline: none;
+    border-color: #b8862c;
+    box-shadow: 0 0 4px #D5A24B88;
+}
+
+/* Íconos dentro de inputs o junto a ellos */
+.range-inputs i {
+    color: #6B4C17; /* Marrón oscuro suave */
+    font-size: 1rem;
+    margin-right: 4px;
+}
+
+/* Combo Box */
+.form-group select{
+    border-radius: 25px;
+    max-width: 300px;
+    border-color: #D5A24B;
+    background-color: #fffefc;
+    color: #6B4C17;
+}
+
+.form-group select,
+::picker(select) {
+  appearance: base-select;
+}
+
+.form-group option {
+  padding: .375rem .75rem;
+  &:hover {
+    background: #d5a24b;
+    color: white;
+  }
+}
+
+::picker(select){
+  border-color: #D5A24B;
+  background-color: #fffefc;
+    color: #6B4C17;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+/* Pie de tarjeta con botón oculto */
+.card-footer {
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    padding: 0;
+}
+
+.btn-ver-mas {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    transition: left 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-card:hover .btn-ver-mas {
+    left: 0;
+}
+
+/* Íconos */
+.fa-eye {
+    margin-right: 10px;
+}
+
+.fa-star {
+    margin-right: 10px;
+}
+
+.property-badge {
+    margin-left: 10px;
+}
+
+.crown-icon {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    animation: float 2s ease-in-out infinite;
+    z-index: 10;
+    color: #D5A24B88;
+}
+
+
+#btn-publicar{
+    background-color: #d5a24b;
+  transition: all 0.5s;
+
+}
+#btn-publicar:hover{
+background-color: #e7c07c;
+  box-shadow: 0 0 20px #d4b58050;
+  transform: scale(1.1);
+}
+#btn-publicar:active{
+  background-color: #b48e4b;
+  box-shadow: none;
+  transition: all 0.25s;
+
+}

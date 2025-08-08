@@ -1,0 +1,237 @@
+/*Galeria*/
+#inmueble .gallery-wrapper {
+    width: 100%;
+    margin-top: 6rem;
+    position: relative;
+}
+
+#inmueble .main-swiper .swiper-slide img {
+    width: 100%;
+    height: 640px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#inmueble .info-overlay {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 12px;
+    padding: 35px 50px;
+    max-width: 520px;
+    color: var(--marfil);
+    z-index: 10;
+}
+
+#inmueble .info-overlay h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#inmueble .info-overlay .price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--mostaza-solar);
+}
+
+#inmueble .info-overlay .address {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+#inmueble .info-overlay .address i {
+    color: var(--mostaza-solar);
+    margin-right: 8px;
+}
+
+#inmueble .thumb-zone {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+}
+
+#inmueble .thumb-swiper {
+    width: 100%;
+}
+
+#inmueble .thumb-swiper .swiper-slide {
+    width: calc(33.333% - 20px);
+    margin-right: 20px;
+}
+
+#inmueble .thumb-swiper .swiper-slide img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 4px solid var(--marfil);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s;
+}
+
+#inmueble .thumb-swiper .swiper-slide-thumb-active img {
+    transform: scale(1.03);
+}
+
+#inmueble .nav-btn {
+    position: absolute;
+    z-index: 30;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#inmueble .nav-btn:hover {
+    background: var(--marfil);
+}
+
+#inmueble #prevBtn {
+    bottom: 60px;
+    right: 480px;
+}
+
+#inmueble #nextBtn {
+    bottom: 60px;
+    right: 10px;
+}
+
+#inmueble .nav-btn i {
+    font-size: 12px;
+    color: #000;
+    line-height: 1;
+}
+
+@media (max-width: 990px) {
+
+    #inmueble .main-swiper .swiper-slide img {
+        height: 480px;
+    }
+
+    #inmueble .info-overlay {
+        left: 40px;
+        bottom: 40px;
+        padding: 25px 35px;
+    }
+
+    #inmueble .thumb-zone {
+        right: 40px;
+        bottom: 40px;
+        width: 380px;
+    }
+
+    #inmueble #prevBtn {
+        right: 460px;
+        bottom: 120px;
+    }
+
+    #inmueble #nextBtn {
+        transform: translateX(40px);
+    }
+}
+
+@media (max-width: 760px) {
+
+    .main-swiper .swiper-slide img {
+        height: 340px;
+    }
+
+    .info-overlay {
+        position: static;
+        margin: 20px auto 0;
+        max-width: none;
+    }
+
+    .thumb-zone {
+        position: static;
+        margin: 20px auto 0;
+        width: 100%;
+    }
+
+    #prevBtn,
+    #nextBtn {
+        display: none;
+    }
+}
+/*Fin Galeria*/
+
+#inmueble .container{
+    font-family: 'Poppins', sans-serif;
+    background: var(--marfil);
+}
+#inmueble .badge-outstanding {
+    background-color: var(--rojo-vino);
+    color: var(--marfil);
+    font-weight: lighter;
+    font-size: 14px;
+}
+#inmueble .badge-sale {
+    background-color: var(--mostaza-solar);
+    color: var(--marfil);
+    font-weight: lighter;
+    font-size: 14px;
+}
+#inmueble .price {
+    color: var(--mostaza-solar);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+#inmueble .price del {
+    font-size: 16px;
+}
+#inmueble .title-property {
+    font-family: 'Poppins', sans-serif;
+    color: var(--rojo-vino);
+}
+#inmueble .card-agent {
+    border: 1px solid var(--negro);
+    border-radius: 10px;
+    padding: 20px;
+}
+#inmueble .agent-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#inmueble .btn-custom {
+    background-color: #861944;
+    color: var(--marfil);
+}
+#inmueble .details-section {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e4dcd3;
+}
+#inmueble .section-title {
+    color: var(--rojo-vino);
+    font-weight: bold;
+}
+#inmueble .card-contact {
+    border: 1px solid var(--negro);
+    border-radius: 10px;
+    padding: 20px;
+}
+#inmueble .check-icon {
+    color: var(--mostaza-solar);
+    margin-right: 5px;
+}
+#inmueble .btn-contact {
+    background-color: var(--mostaza-solar);
+    color: var(--marfil);
+}
